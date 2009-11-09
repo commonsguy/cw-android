@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	>
+	<TableLayout
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:stretchColumns="1,2"
+	>
+		<TableRow>
+			<TextView
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content"
+				android:paddingLeft="2dip"
+				android:paddingRight="4dip"
+				android:text="Location:"
+			/>
+			<EditText android:id="@+id/lat"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:cursorVisible="true"
+				android:editable="true"
+				android:singleLine="true"
+				android:layout_weight="1"
+			/>
+			<EditText android:id="@+id/lon"
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content"
+				android:cursorVisible="true"
+				android:editable="true"
+				android:singleLine="true"
+				android:layout_weight="1"
+			/>
+		</TableRow>
+	</TableLayout>
+	<Button android:id="@+id/map"
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:text="Show Me!"
+	/>
+</LinearLayout>

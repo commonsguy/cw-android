@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:stretchColumns="1">
+	<TableRow>
+		<TextView
+				android:text="URL:" />
+		<EditText android:id="@+id/entry"
+			android:layout_span="3"/>
+	</TableRow>
+	<View
+		android:layout_height="2px"
+		android:background="#0000FF" />
+	<TableRow>
+		<Button android:id="@+id/cancel"
+			android:layout_column="2"
+			android:text="Cancel" />
+		<Button android:id="@+id/ok"
+			android:text="OK" />
+	</TableRow>
+</TableLayout>

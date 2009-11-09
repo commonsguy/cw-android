@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">StringsDemo</string>
+	<string name="funky_format">My name is &lt;b&gt;%1$s&lt;/b&gt;</string>
+</resources>

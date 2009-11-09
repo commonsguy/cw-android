@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+>
+	<RatingBar
+		android:id="@+id/rate"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:numStars="3"
+		android:stepSize="1"
+		android:rating="2" />
+	<TextView
+		android:id="@+id/label"
+		android:paddingLeft="2px"
+		android:paddingRight="2px"
+		android:paddingTop="2px"
+		android:textSize="40sp"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"/>
+</LinearLayout>

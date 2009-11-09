@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+>
+	<TableRow>
+		<TextView
+				android:text="Checkbox:"
+				android:paddingRight="5px"
+		/>
+		<TextView android:id="@+id/checkbox"
+		/>
+	</TableRow>
+	<TableRow>
+		<TextView
+				android:text="Ringtone:"
+				android:paddingRight="5px"
+		/>
+		<TextView android:id="@+id/ringtone"
+		/>
+	</TableRow>
+</TableLayout>

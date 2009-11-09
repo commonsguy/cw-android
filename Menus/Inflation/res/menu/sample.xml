@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/close"
+		android:title="Close"
+		android:orderInCategory="3"
+		android:icon="@drawable/eject" />
+	<item android:id="@+id/no_icon"
+		android:orderInCategory="2"
+		android:title="Sans Icon" />
+	<item android:id="@+id/disabled"
+		android:orderInCategory="4"
+		android:enabled="false"
+		android:title="Disabled" />
+	<group android:id="@+id/other_stuff"
+		android:menuCategory="secondary"
+		android:visible="false">
+		<item android:id="@+id/later"
+			android:orderInCategory="0"
+			android:title="2nd-To-Last" />
+		<item android:id="@+id/last"
+			android:orderInCategory="1"
+			android:title="Last" />
+	</group>
+	<item android:id="@+id/submenu"
+		android:orderInCategory="3"
+		android:title="A Submenu">
+		<menu>				
+			<item android:id="@+id/non_ghost"
+				android:title="Non-Ghost"
+				android:visible="true"
+				android:alphabeticShortcut="n" />
+			<item android:id="@+id/ghost"
+				android:title="A Ghost"
+				android:visible="false"
+				android:alphabeticShortcut="g" />
+		</menu>
+	</item>
+</menu>

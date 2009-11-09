@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.commonsware.android.browser2">
+	<application android:icon="@drawable/cw">
+		<activity android:name=".BrowserDemo2" android:label="BrowserDemo2">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+	</application>
+</manifest>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">StructuredPrefsDemo</string>
+	<string name="checkbox">checkbox</string>
+	<string name="ringtone">ringtone</string>
+	<string name="checkbox2">checkbox2</string>
+</resources>

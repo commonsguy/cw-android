@@ -1,0 +1,29 @@
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory android:title="Simple Preferences">
+		<CheckBoxPreference
+			android:key="checkbox"
+			android:title="Checkbox Preference"
+			android:summary="Check it on, check it off"
+		/>
+		<RingtonePreference
+			android:key="ringtone"
+			android:title="Ringtone Preference"
+			android:showDefault="true"
+			android:showSilent="true"
+			android:summary="Pick a tone, any tone"
+		/>
+	</PreferenceCategory>
+	<PreferenceCategory android:title="Detail Screens">
+		<PreferenceScreen
+			android:key="detail"
+			android:title="Detail Screen"
+			android:summary="Additional preferences held in another page">
+			<CheckBoxPreference
+				android:key="checkbox2"
+				android:title="Another Checkbox"
+				android:summary="On. Off. It really doesn't matter."
+			/>
+		</PreferenceScreen>
+	</PreferenceCategory>
+</PreferenceScreen>
