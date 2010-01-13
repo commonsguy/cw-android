@@ -26,7 +26,7 @@
 			/>
 		</PreferenceScreen>
 	</PreferenceCategory>
-	<PreferenceCategory android:title="Simple Preferences">
+	<PreferenceCategory android:title="Other Preferences">
 		<EditTextPreference
 			android:key="text"
 			android:title="Text Entry Dialog"
