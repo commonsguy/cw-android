@@ -81,7 +81,6 @@ public class WeatherDemo extends Activity {
 			ResponseHandler<String> responseHandler=new BasicResponseHandler();
 			String responseBody=client.execute(getMethod,
 																				 responseHandler);
-			
 			buildForecasts(responseBody);
 			
 			String page=generatePage();
@@ -90,6 +89,7 @@ public class WeatherDemo extends Activity {
 																	"UTF-8", null);
 		}
 		catch (Throwable t) {
+			android.util.Log.e("WeatherDemo", "Exception fetching data", t);
 			Toast
 				.makeText(this, "Request failed: "+t.toString(), 4000)
 				.show();
@@ -131,7 +131,7 @@ public class WeatherDemo extends Activity {
 	}
 	
 	String generatePage() {
-		StringBuffer bufResult=new StringBuffer("<html><body><table>");
+		StringBuilder bufResult=new StringBuilder("<html><body><table>");
 		
 		bufResult.append("<tr><th width=\"50%\">Time</th>"+
 											"<th>Temperature</th><th>Forecast</th></tr>");

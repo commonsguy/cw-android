@@ -129,7 +129,7 @@ public class WeatherPlusService extends Service {
 	}
 	
 	String generatePage(List<Forecast> forecasts) {
-		StringBuffer bufResult=new StringBuffer("<html><body><table>");
+		StringBuilder bufResult=new StringBuilder("<html><body><table>");
 		
 		bufResult.append("<tr><th width=\"50%\">Time</th>"+
 											"<th>Temperature</th><th>Forecast</th></tr>");

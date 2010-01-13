@@ -56,7 +56,7 @@ public class ReadWriteFileDemo extends Activity {
 				InputStreamReader tmp=new InputStreamReader(in);
 				BufferedReader reader=new BufferedReader(tmp);
 				String str;
-				StringBuffer buf=new StringBuffer();
+				StringBuilder buf=new StringBuilder();
 				
 				while ((str = reader.readLine()) != null) {
 					buf.append(str+"\n");
