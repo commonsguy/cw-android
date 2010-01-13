@@ -65,6 +65,11 @@ public class ConstantsBrowser extends ListActivity {
 	}
 	
 	@Override
+	public void onDestroy() {
+		constantsCursor.close();
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, ADD_ID, Menu.NONE, "Add")
 				.setIcon(R.drawable.add)
