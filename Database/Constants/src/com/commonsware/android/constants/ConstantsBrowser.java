@@ -62,6 +62,8 @@ public class ConstantsBrowser extends ListActivity {
 	
 	@Override
 	public void onDestroy() {
+		super.onDestroy();
+		
 		constantsCursor.close();
 		db.close();
 	}
