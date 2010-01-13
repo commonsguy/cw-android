@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ProgressBar;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class HandlerDemo extends Activity {
 	ProgressBar bar;
@@ -28,7 +29,7 @@ public class HandlerDemo extends Activity {
 			bar.incrementProgressBy(5);
 		}
 	};
-	boolean isRunning=false;
+	AtomicBoolean isRunning=new AtomicBoolean(false);
 	
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -44,7 +45,7 @@ public class HandlerDemo extends Activity {
 		Thread background=new Thread(new Runnable() {
 			public void run() {
 				try {
-					for (int i=0;i<20 && isRunning;i++) {
+					for (int i=0;i<20 && isRunning.get();i++) {
 						Thread.sleep(1000);
 						handler.sendMessage(handler.obtainMessage());
 					}
@@ -55,12 +56,12 @@ public class HandlerDemo extends Activity {
 			}
 		});
 		
-		isRunning=true;
+		isRunning.set(true);
 		background.start();
 	}
 	
 	public void onStop() {
 		super.onStop();
-		isRunning=false;
+		isRunning.set(false);
 	}
 }
