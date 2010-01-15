@@ -64,7 +64,7 @@ public class NotifyDemo extends Activity {
 	private void notifyMe() {
 		final NotificationManager mgr=
 			(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-		Notification note=new Notification(R.drawable.red_ball,
+		Notification note=new Notification(R.drawable.stat_notify_chat,
 																				"Status message!",
 																				System.currentTimeMillis());
 		PendingIntent i=PendingIntent.getActivity(this, 0,
