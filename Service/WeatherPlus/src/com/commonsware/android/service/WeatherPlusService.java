@@ -81,6 +81,7 @@ public class WeatherPlusService extends Service {
 		super.onDestroy();
 		
 		mgr.removeUpdates(onLocationChange);
+		client.getConnectionManager().shutdown();
 	}
 	
 	synchronized public String getForecastPage() {

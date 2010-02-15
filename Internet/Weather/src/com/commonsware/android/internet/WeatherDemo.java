@@ -72,6 +72,13 @@ public class WeatherDemo extends Activity {
 		mgr.removeUpdates(onLocationChange);
 	}
 	
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		
+		client.getConnectionManager().shutdown();
+	}
+	
 	private void updateForecast(Location loc) {
 		String url=String.format(format, loc.getLatitude(),
 														 loc.getLongitude());
