@@ -51,8 +51,7 @@ public class InflationDemo extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		theMenu=menu;
 		
-		new MenuInflater(getApplication())
-																	.inflate(R.menu.sample, menu);
+		new MenuInflater(this).inflate(R.menu.sample, menu);
 
 		return(super.onCreateOptionsMenu(menu));
 	}
