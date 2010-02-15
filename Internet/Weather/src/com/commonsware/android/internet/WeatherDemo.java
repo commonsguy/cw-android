@@ -50,7 +50,7 @@ public class WeatherDemo extends Activity {
 		super.onCreate(icicle);
 		setContentView(R.layout.main);
 		
-		mgr=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		mgr=(LocationManager)getSystemService(LOCATION_SERVICE);
 		format=getString(R.string.url);
 		browser=(WebView)findViewById(R.id.webkit);
 		client=new DefaultHttpClient();

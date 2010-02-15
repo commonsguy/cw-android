@@ -43,7 +43,7 @@ public class WeatherPlus extends Activity {
 		
 		browser=(WebView)findViewById(R.id.webkit);
 		bindService(new Intent(this, WeatherPlusService.class),
-								onService, Context.BIND_AUTO_CREATE);
+								onService, BIND_AUTO_CREATE);
 	}
 	
 	@Override

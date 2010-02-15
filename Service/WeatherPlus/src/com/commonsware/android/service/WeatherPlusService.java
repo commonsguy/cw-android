@@ -66,7 +66,7 @@ public class WeatherPlusService extends Service {
 		client=new DefaultHttpClient();
 		format=getString(R.string.url);
 		
-		mgr=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		mgr=(LocationManager)getSystemService(LOCATION_SERVICE);
 		mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 																10000, 10000.0f, onLocationChange);
 	}
