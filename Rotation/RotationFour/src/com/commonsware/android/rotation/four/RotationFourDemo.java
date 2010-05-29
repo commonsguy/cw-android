@@ -55,6 +55,8 @@ public class RotationFourDemo extends Activity {
 			}
 		});
 		
+		restoreMe(savedInstanceState);
+		
 		viewButton.setEnabled(contact!=null);
 	}
 
@@ -65,6 +67,27 @@ public class RotationFourDemo extends Activity {
 			if (resultCode==RESULT_OK) {
 				contact=data.getData();
 				viewButton.setEnabled(true);
+			}
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		if (contact!=null) {
+			outState.putString("contact", contact.toString());
+		}
+	}
+	
+	private void restoreMe(Bundle state) {
+		contact=null;
+		
+		if (state!=null) {
+			String contactUri=state.getString("contact");
+			
+			if (contactUri!=null) {
+				contact=Uri.parse(contactUri);
 			}
 		}
 	}
