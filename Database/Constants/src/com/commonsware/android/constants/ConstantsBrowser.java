@@ -38,7 +38,6 @@ import android.widget.TextView;
 public class ConstantsBrowser extends ListActivity {
 	private static final int ADD_ID = Menu.FIRST+1;
 	private static final int DELETE_ID = Menu.FIRST+3;
-	private static final int CLOSE_ID = Menu.FIRST+4;
 	private SQLiteDatabase db=null;
 	private Cursor constantsCursor=null;
 	
@@ -73,9 +72,6 @@ public class ConstantsBrowser extends ListActivity {
 		menu.add(Menu.NONE, ADD_ID, Menu.NONE, "Add")
 				.setIcon(R.drawable.add)
 				.setAlphabeticShortcut('a');
-		menu.add(Menu.NONE, CLOSE_ID, Menu.NONE, "Close")
-				.setIcon(R.drawable.eject)
-				.setAlphabeticShortcut('c');
 
 		return(super.onCreateOptionsMenu(menu));
 	}
@@ -85,10 +81,6 @@ public class ConstantsBrowser extends ListActivity {
 		switch (item.getItemId()) {
 			case ADD_ID:
 				add();
-				return(true);
-				
-			case CLOSE_ID:
-				finish();
 				return(true);
 		}
 
