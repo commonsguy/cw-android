@@ -20,7 +20,6 @@ import android.app.ListActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.method.NumberKeyListener;
 import android.view.ContextMenu;
@@ -38,15 +37,17 @@ import android.widget.TextView;
 public class ConstantsBrowser extends ListActivity {
 	private static final int ADD_ID = Menu.FIRST+1;
 	private static final int DELETE_ID = Menu.FIRST+3;
-	private SQLiteDatabase db=null;
+	private DatabaseHelper db=null;
 	private Cursor constantsCursor=null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		db=(new DatabaseHelper(this)).getWritableDatabase();
-		constantsCursor=db.rawQuery("SELECT _ID, title, value "+
+		db=new DatabaseHelper(this);
+		constantsCursor=db
+											.getReadableDatabase()
+											.rawQuery("SELECT _ID, title, value "+
 																"FROM constants ORDER BY title",
 																null);
 	
@@ -162,14 +163,14 @@ public class ConstantsBrowser extends ListActivity {
 		values.put("title", wrapper.getTitle());
 		values.put("value", wrapper.getValue());
 		
-		db.insert("constants", "title", values);
+		db.getWritableDatabase().insert("constants", "title", values);
 		constantsCursor.requery();
 	}
 	
 	private void processDelete(long rowId) {
 		String[] args={String.valueOf(rowId)};
 		
-		db.delete("constants", "_ID=?", args);
+		db.getWritableDatabase().delete("constants", "_ID=?", args);
 		constantsCursor.requery();
 	}
 	
