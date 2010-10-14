@@ -18,7 +18,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ViewFlipper;
 
@@ -39,11 +38,6 @@ public class FlipperDemo2 extends Activity {
 		
 		flipper=(ViewFlipper)findViewById(R.id.details);
 		
-		flipper.setInAnimation(AnimationUtils.loadAnimation(this,
-																					R.anim.push_left_in));
-		flipper.setOutAnimation(AnimationUtils.loadAnimation(this,
-																					R.anim.push_left_out));
-
 		for (String item : items) {
 			Button btn=new Button(this);
 			
