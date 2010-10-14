@@ -26,9 +26,10 @@ import android.widget.TextView;
 
 public class AutoCompleteDemo extends Activity
 	implements TextWatcher {
-	TextView selection;
-	AutoCompleteTextView edit;
-	String[] items={"lorem", "ipsum", "dolor", "sit", "amet",
+	private TextView selection;
+	private AutoCompleteTextView edit;
+	private static final String[] items={"lorem", "ipsum", "dolor",
+					"sit", "amet",
 					"consectetuer", "adipiscing", "elit", "morbi", "vel",
 					"ligula", "vitae", "arcu", "aliquet", "mollis",
 					"etiam", "vel", "erat", "placerat", "ante",

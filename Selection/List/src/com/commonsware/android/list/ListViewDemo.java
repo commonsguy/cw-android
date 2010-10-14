@@ -24,8 +24,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ListViewDemo extends ListActivity {
-	TextView selection;
-	String[] items={"lorem", "ipsum", "dolor", "sit", "amet",
+	private TextView selection;
+	private static final String[] items={"lorem", "ipsum", "dolor",
+					"sit", "amet",
 					"consectetuer", "adipiscing", "elit", "morbi", "vel",
 					"ligula", "vitae", "arcu", "aliquet", "mollis",
 					"etiam", "vel", "erat", "placerat", "ante",

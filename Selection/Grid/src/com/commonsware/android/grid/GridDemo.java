@@ -27,8 +27,9 @@ import android.widget.TextView;
 
 public class GridDemo extends Activity
 	implements AdapterView.OnItemSelectedListener {
-	TextView selection;
-	String[] items={"lorem", "ipsum", "dolor", "sit", "amet",
+	private TextView selection;
+	private static final String[] items={"lorem", "ipsum", "dolor",
+					"sit", "amet",
 					"consectetuer", "adipiscing", "elit", "morbi", "vel",
 					"ligula", "vitae", "arcu", "aliquet", "mollis",
 					"etiam", "vel", "erat", "placerat", "ante",
