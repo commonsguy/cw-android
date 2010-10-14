@@ -26,7 +26,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ViewWrapperDemo extends ListActivity {
+public class ViewHolderDemo extends ListActivity {
 	private TextView selection;
 	private static final String[] items={"lorem", "ipsum", "dolor",
 					"sit", "amet",
@@ -54,32 +54,25 @@ public class ViewWrapperDemo extends ListActivity {
 	
 	class IconicAdapter extends ArrayAdapter<String> {
 		IconicAdapter() {
-			super(ViewWrapperDemo.this, R.layout.row, items);
+			super(ViewHolderDemo.this, R.layout.row, R.id.label,
+						items);
 		}
 		
 		public View getView(int position, View convertView,
 												ViewGroup parent) {
-			View row=convertView;
-			ViewWrapper wrapper=null;
+			View row=super.getView(position, convertView, parent);
+			ViewHolder holder=(ViewHolder)row.getTag();
 			
-			if (row==null) {													
-				LayoutInflater inflater=getLayoutInflater();
-				
-				row=inflater.inflate(R.layout.row, parent, false);
-				wrapper=new ViewWrapper(row);
-				row.setTag(wrapper);
+			if (holder==null) {													
+				holder=new ViewHolder(row);
+				row.setTag(holder);
 			}
-			else {
-				wrapper=(ViewWrapper)row.getTag();
-			}
-			
-			wrapper.getLabel().setText(getModel(position));
 			
 			if (getModel(position).length()>4) {
-				wrapper.getIcon().setImageResource(R.drawable.delete);
+				holder.icon.setImageResource(R.drawable.delete);
 			}	
 			else {
-				wrapper.getIcon().setImageResource(R.drawable.ok);
+				holder.icon.setImageResource(R.drawable.ok);
 			}
 			
 			return(row);

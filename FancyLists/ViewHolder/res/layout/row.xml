@@ -6,10 +6,8 @@
 >
 	<ImageView
 		android:id="@+id/icon"
-		android:layout_width="22px"
-		android:paddingLeft="2px"
-		android:paddingRight="2px"
-		android:paddingTop="2px"
+		android:padding="2dip"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:src="@drawable/ok"
 	/>

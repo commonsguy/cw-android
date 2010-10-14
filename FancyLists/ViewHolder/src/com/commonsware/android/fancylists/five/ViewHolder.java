@@ -16,30 +16,11 @@ package com.commonsware.android.fancylists.five;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-class ViewWrapper {
-	View base;
-	TextView label=null;
+class ViewHolder {
 	ImageView icon=null;
 	
-	ViewWrapper(View base) {
-		this.base=base;
-	}
-	
-	TextView getLabel() {
-		if (label==null) {
-			label=(TextView)base.findViewById(R.id.label);
-		}
-		
-		return(label);
-	}
-	
-	ImageView getIcon() {
-		if (icon==null) {
-			icon=(ImageView)base.findViewById(R.id.icon);
-		}
-		
-		return(icon);
+	ViewHolder(View base) {
+		this.icon=(ImageView)base.findViewById(R.id.icon);
 	}
 }
