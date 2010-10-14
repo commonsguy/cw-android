@@ -50,12 +50,17 @@ public class DynamicDemo extends ListActivity {
 	
 	class IconicAdapter extends ArrayAdapter<String> {
 		IconicAdapter() {
-			super(DynamicDemo.this, R.layout.row, R.id.label, items);
+			super(DynamicDemo.this, R.layout.row, items);
 		}
 		
 		public View getView(int position, View convertView,
 												ViewGroup parent) {
-			View row=super.getView(position, convertView, parent);
+			LayoutInflater inflater=getLayoutInflater();
+			View row=inflater.inflate(R.layout.row, parent, false);
+			TextView label=(TextView)row.findViewById(R.id.label);
+			
+			label.setText(items[position]);
+			
 			ImageView icon=(ImageView)row.findViewById(R.id.icon);
 				
 			if (items[position].length()>4) {
