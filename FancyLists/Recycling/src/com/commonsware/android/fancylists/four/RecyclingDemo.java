@@ -48,7 +48,7 @@ public class RecyclingDemo extends ListActivity {
 	 	selection.setText(items[position]);
 	}
 	
-	class IconicAdapter extends ArrayAdapter {
+	class IconicAdapter extends ArrayAdapter<String> {
 		IconicAdapter() {
 			super(RecyclingDemo.this, R.layout.row, items);
 		}
