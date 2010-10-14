@@ -55,22 +55,17 @@ public class RateListDemo extends ListActivity {
 	
 	class RatingAdapter extends ArrayAdapter<RowModel> {
 		RatingAdapter(ArrayList<RowModel> list) {
-			super(RateListDemo.this, R.layout.row, list);
+			super(RateListDemo.this, R.layout.row, R.id.label, list);
 		}
 		
 		public View getView(int position, View convertView,
 												ViewGroup parent) {
-			View row=convertView;
-			ViewWrapper wrapper;
-			RatingBar rate;									
+			View row=super.getView(position, convertView, parent);
+			ViewHolder holder=(ViewHolder)row.getTag();
 													
-			if (row==null) {		
-				LayoutInflater inflater=getLayoutInflater();
-				
-				row=inflater.inflate(R.layout.row, parent, false);
-				wrapper=new ViewWrapper(row);
-				row.setTag(wrapper);
-				rate=wrapper.getRatingBar();
+			if (holder==null) {		
+				holder=new ViewHolder(row);
+				row.setTag(holder);
 				
 				RatingBar.OnRatingBarChangeListener l=
 										new RatingBar.OnRatingBarChangeListener() {
@@ -89,18 +84,13 @@ public class RateListDemo extends ListActivity {
 					}
 				};
 				
-				rate.setOnRatingBarChangeListener(l);
-			}
-			else {
-				wrapper=(ViewWrapper)row.getTag();
-				rate=wrapper.getRatingBar();
+				holder.rate.setOnRatingBarChangeListener(l);
 			}
 
 			RowModel model=getModel(position);
 			
-			wrapper.getLabel().setText(model.toString());
-			rate.setTag(new Integer(position));
-			rate.setRating(model.rating);
+			holder.rate.setTag(new Integer(position));
+			holder.rate.setRating(model.rating);
 			
 			return(row);
 		}
