@@ -2,19 +2,19 @@
 <RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:padding="5px">
+	android:layout_height="wrap_content">
 	<TextView android:id="@+id/label"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="URL:"
-		android:paddingTop="15px"/>
+		android:layout_alignBaseline="@+id/entry"
+		android:layout_alignParentLeft="true"/>
 	<EditText
-		android:id="@+id/entry"
+		android:id="@id/entry"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_toRightOf="@id/label"
-		android:layout_alignBaseline="@id/label"/>
+		android:layout_alignParentTop="true"/>
 	<Button
 		android:id="@+id/ok"
 		android:layout_width="wrap_content"
