@@ -14,10 +14,10 @@
 		android:id="@+id/grid"
 		android:layout_width="fill_parent" 
 		android:layout_height="fill_parent"
-		android:verticalSpacing="35px"
-		android:horizontalSpacing="5px"
+		android:verticalSpacing="40dip"
+		android:horizontalSpacing="5dip"
 		android:numColumns="auto_fit"
-		android:columnWidth="100px"
+		android:columnWidth="100dip"
 		android:stretchMode="columnWidth"
 		android:gravity="center"
 		/>

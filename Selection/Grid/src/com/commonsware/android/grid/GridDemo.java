@@ -18,10 +18,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -42,8 +40,8 @@ public class GridDemo extends Activity
 		selection=(TextView)findViewById(R.id.selection);
 		
 		GridView g=(GridView) findViewById(R.id.grid);
-		g.setAdapter(new FunnyLookingAdapter(this,
-												android.R.layout.simple_list_item_1,
+		g.setAdapter(new ArrayAdapter<String>(this,
+												R.layout.cell,
 												items));
 		g.setOnItemSelectedListener(this);
 	}
@@ -55,30 +53,5 @@ public class GridDemo extends Activity
 	
 	public void onNothingSelected(AdapterView<?> parent) {
 		selection.setText("");
-	}
-	
-	private class FunnyLookingAdapter extends ArrayAdapter {
-		Context ctxt;
-		
-		FunnyLookingAdapter(Context ctxt, int resource,
-												String[] items) {
-			super(ctxt, resource, items);
-			
-			this.ctxt=ctxt;
-		}
-		
-		public View getView(int position, View convertView,
-													ViewGroup parent) {
-			TextView label=(TextView)convertView;
-			
-			if (convertView==null) {
-				convertView=new TextView(ctxt);
-				label=(TextView)convertView;
-			}
-			
-			label.setText(items[position]);
-			
-			return(convertView);
-		}
 	}
 }
