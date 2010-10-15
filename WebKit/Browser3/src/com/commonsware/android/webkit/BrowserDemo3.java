@@ -38,9 +38,7 @@ public class BrowserDemo3 extends Activity {
 						+new Date().toString()
 						+"</a></body></html>";
 						
-						browser.loadDataWithBaseURL("x-data://base", page,
-																				"text/html", "UTF-8",
-																				null);
+		browser.loadData(page, "text/html", "UTF-8");
 	}
 
 	private class Callback extends WebViewClient {
