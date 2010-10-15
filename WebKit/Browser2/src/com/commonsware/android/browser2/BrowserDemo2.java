@@ -28,6 +28,6 @@ public class BrowserDemo2 extends Activity {
 		browser=(WebView)findViewById(R.id.webkit);
 		
 		browser.loadData("<html><body>Hello, world!</body></html>",
-							"text/html", "UTF-8");
+											"text/html", "UTF-8");
 	}
 }
