@@ -17,7 +17,10 @@ package com.commonsware.android.fonts;
 import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
 import android.widget.TextView;
+import java.io.File;
 
 public class FontSampler extends Activity {
 	@Override
@@ -30,5 +33,18 @@ public class FontSampler extends Activity {
 																						"fonts/HandmadeTypewriter.ttf");
 		
 		tv.setTypeface(face);
+		
+		File font=new File(Environment.getExternalStorageDirectory(),
+											 "MgOpenCosmeticaBold.ttf");
+		
+		if (font.exists()) {
+			tv=(TextView)findViewById(R.id.file);
+			face=Typeface.createFromFile(font);
+			
+			tv.setTypeface(face);
+		}
+		else {
+			findViewById(R.id.filerow).setVisibility(View.GONE);
+		}
 	}
 }

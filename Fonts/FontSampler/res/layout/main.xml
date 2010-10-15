@@ -55,4 +55,16 @@
 			android:textSize="20sp"
 		/>
 	</TableRow>
+	<TableRow android:id="@+id/filerow">
+		<TextView
+			android:text="Custom from File:"
+			android:layout_marginRight="4px"
+			android:textSize="20sp"
+		/>
+		<TextView
+			android:id="@+id/file"
+			android:text="Hello, world!"
+			android:textSize="20sp"
+		/>
+	</TableRow>
 </TableLayout>
