@@ -14,116 +14,129 @@
 
 package com.commonsware.android.menus;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import java.util.ArrayList;
 
 public class MenuDemo extends ListActivity {
-	TextView selection;
-	String[] items={"lorem", "ipsum", "dolor", "sit", "amet",
-					"consectetuer", "adipiscing", "elit", "morbi", "vel",
-					"ligula", "vitae", "arcu", "aliquet", "mollis",
-					"etiam", "vel", "erat", "placerat", "ante",
+	private static final String[] items={"lorem", "ipsum", "dolor",
+					"sit", "amet", "consectetuer", "adipiscing", "elit",
+					"morbi", "vel", "ligula", "vitae", "arcu", "aliquet",
+					"mollis", "etiam", "vel", "erat", "placerat", "ante",
 					"porttitor", "sodales", "pellentesque", "augue", "purus"};
-	public static final int EIGHT_ID = Menu.FIRST+1;
-	public static final int SIXTEEN_ID = Menu.FIRST+2;
-	public static final int TWENTY_FOUR_ID = Menu.FIRST+3;
-	public static final int TWO_ID = Menu.FIRST+4;
-	public static final int THIRTY_TWO_ID = Menu.FIRST+5;
-	public static final int FORTY_ID = Menu.FIRST+6;
-	public static final int ONE_ID = Menu.FIRST+7;
+	public static final int MENU_ADD = Menu.FIRST+1;
+	public static final int MENU_RESET = Menu.FIRST+2;
+	public static final int MENU_CAP = Menu.FIRST+3;
+	public static final int MENU_REMOVE = Menu.FIRST+4;
+	private ArrayList<String> words=null;
 
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		setContentView(R.layout.main);
-		setListAdapter(new ArrayAdapter<String>(this,
-								android.R.layout.simple_list_item_1, items));
-		selection=(TextView)findViewById(R.id.selection);
 		
+		initAdapter();
 		registerForContextMenu(getListView());
 	}
 	
-	public void onListItemClick(ListView parent, View v,
-																int position, long id) {
-	 	selection.setText(items[position]);
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu
+			.add(Menu.NONE, MENU_ADD, Menu.NONE, "Add")
+			.setIcon(R.drawable.ic_menu_add);
+		menu
+			.add(Menu.NONE, MENU_RESET, Menu.NONE, "Reset")
+			.setIcon(R.drawable.ic_menu_refresh);
+
+		return(super.onCreateOptionsMenu(menu));
 	}
 	
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 																		ContextMenu.ContextMenuInfo menuInfo) {
-		populateMenu(menu);
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		populateMenu(menu);
-
-		return(super.onCreateOptionsMenu(menu));
+		menu.add(Menu.NONE, MENU_CAP, Menu.NONE, "Capitalize");
+		menu.add(Menu.NONE, MENU_REMOVE, Menu.NONE, "Remove");
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		return(applyMenuChoice(item) ||
-						super.onOptionsItemSelected(item));
+		switch (item.getItemId()) {
+			case MENU_ADD:
+				add();
+				return(true);
+		
+			case MENU_RESET:
+				initAdapter();
+				return(true);
+		}
+		
+		return(super.onOptionsItemSelected(item));
 	}
 
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		return(applyMenuChoice(item) ||
-						super.onContextItemSelected(item));
-	}
-	
-	private void populateMenu(Menu menu) {
-		menu.add(Menu.NONE, ONE_ID, Menu.NONE, "1 Pixel");
-		menu.add(Menu.NONE, TWO_ID, Menu.NONE, "2 Pixels");
-		menu.add(Menu.NONE, EIGHT_ID, Menu.NONE, "8 Pixels");
-		menu.add(Menu.NONE, SIXTEEN_ID, Menu.NONE, "16 Pixels");
-		menu.add(Menu.NONE, TWENTY_FOUR_ID, Menu.NONE, "24 Pixels");
-		menu.add(Menu.NONE, THIRTY_TWO_ID, Menu.NONE, "32 Pixels");
-		menu.add(Menu.NONE, FORTY_ID, Menu.NONE, "40 Pixels");
-	}
-	
-	private boolean applyMenuChoice(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info=
+			(AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		ArrayAdapter<String> adapter=(ArrayAdapter<String>)getListAdapter();
+
 		switch (item.getItemId()) {
-			case ONE_ID:
-				getListView().setDividerHeight(1);
+			case MENU_CAP:
+				String word=words.get(info.position);
+				
+				word=word.toUpperCase();
+				
+				adapter.remove(words.get(info.position));
+				adapter.insert(word, info.position);
+				
 				return(true);
 		
-			case EIGHT_ID:
-				getListView().setDividerHeight(8);
-				return(true);
-		
-			case SIXTEEN_ID:
-				getListView().setDividerHeight(16);
-				return(true);
-		
-			case TWENTY_FOUR_ID:
-				getListView().setDividerHeight(24);
-				return(true);
-		
-			case TWO_ID:
-				getListView().setDividerHeight(2);
-				return(true);
-		
-			case THIRTY_TWO_ID:
-				getListView().setDividerHeight(32);
-				return(true);
-		
-			case FORTY_ID:
-				getListView().setDividerHeight(40);
+			case MENU_REMOVE:
+				adapter.remove(words.get(info.position));
+				
 				return(true);
 		}
-
-		return(false);
+		
+		return(super.onOptionsItemSelected(item));
+	}
+	
+	private void initAdapter() {
+		words=new ArrayList<String>();
+		
+		for (String s : items) {
+			words.add(s);
+		}
+		
+		setListAdapter(new ArrayAdapter<String>(this,
+										android.R.layout.simple_list_item_1, words));
+	}
+	
+	private void add() {
+		final View addView=getLayoutInflater().inflate(R.layout.add, null);
+		
+		new AlertDialog.Builder(this)
+			.setTitle("Add a Word")
+			.setView(addView)
+			.setPositiveButton("OK",
+													new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+															int whichButton) {
+					ArrayAdapter<String> adapter=(ArrayAdapter<String>)getListAdapter();
+					EditText title=(EditText)addView.findViewById(R.id.title);
+					
+					adapter.add(title.getText().toString());
+				}
+			})
+			.setNegativeButton("Cancel", null)
+			.show();
 	}
 }

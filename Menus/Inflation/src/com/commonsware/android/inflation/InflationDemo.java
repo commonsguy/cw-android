@@ -14,64 +14,120 @@
 
 package com.commonsware.android.inflation;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-import java.util.HashMap;
-import java.util.Map;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import java.util.ArrayList;
 
-public class InflationDemo extends Activity {
-	private final static Map<Integer,String> MESSAGES;
-	private boolean otherStuffVisible=false;
-	private Menu theMenu=null;
-	
-	static {
-		MESSAGES=new HashMap<Integer,String>();
-		MESSAGES.put(R.id.close, "I don't wanna!");
-		MESSAGES.put(R.id.no_icon, "Where's my picture?");
-		MESSAGES.put(R.id.later, "Quoth the Maven, \"#4\"");
-		MESSAGES.put(R.id.last, "i always get picked last...");
-		MESSAGES.put(R.id.non_ghost, "I ain't 'fraid of no ghost!");
-		MESSAGES.put(R.id.ghost, "Boo!");
-	};
-	
+public class InflationDemo extends ListActivity {
+	private static final String[] items={"lorem", "ipsum", "dolor",
+					"sit", "amet", "consectetuer", "adipiscing", "elit",
+					"morbi", "vel", "ligula", "vitae", "arcu", "aliquet",
+					"mollis", "etiam", "vel", "erat", "placerat", "ante",
+					"porttitor", "sodales", "pellentesque", "augue", "purus"};
+	private ArrayList<String> words=null;
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+	public void onCreate(Bundle icicle) {
+		super.onCreate(icicle);
+		
+		initAdapter();
+		registerForContextMenu(getListView());
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		theMenu=menu;
-		
-		new MenuInflater(this).inflate(R.menu.sample, menu);
+		new MenuInflater(this).inflate(R.menu.option, menu);
 
 		return(super.onCreateOptionsMenu(menu));
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+																		ContextMenu.ContextMenuInfo menuInfo) {
+		new MenuInflater(this).inflate(R.menu.context, menu);
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId()==R.id.non_ghost) {
-			otherStuffVisible=!otherStuffVisible;
-			
-			theMenu.setGroupVisible(R.id.other_stuff, otherStuffVisible);
-		}
+		switch (item.getItemId()) {
+			case R.id.add:
+				add();
+				return(true);
 		
-		String message=MESSAGES.get(item.getItemId());
-		
-		if (message!=null) {
-			Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-			
-			return(true);
+			case R.id.reset:
+				initAdapter();
+				return(true);
 		}
 		
 		return(super.onOptionsItemSelected(item));
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterView.AdapterContextMenuInfo info=
+			(AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
+		ArrayAdapter<String> adapter=(ArrayAdapter<String>)getListAdapter();
+
+		switch (item.getItemId()) {
+			case R.id.cap:
+				String word=words.get(info.position);
+				
+				word=word.toUpperCase();
+				
+				adapter.remove(words.get(info.position));
+				adapter.insert(word, info.position);
+				
+				return(true);
+		
+			case R.id.remove:
+				adapter.remove(words.get(info.position));
+				
+				return(true);
+		}
+		
+		return(super.onOptionsItemSelected(item));
+	}
+	
+	private void initAdapter() {
+		words=new ArrayList<String>();
+		
+		for (String s : items) {
+			words.add(s);
+		}
+		
+		setListAdapter(new ArrayAdapter<String>(this,
+										android.R.layout.simple_list_item_1, words));
+	}
+	
+	private void add() {
+		final View addView=getLayoutInflater().inflate(R.layout.add, null);
+		
+		new AlertDialog.Builder(this)
+			.setTitle("Add a Word")
+			.setView(addView)
+			.setPositiveButton("OK",
+													new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog,
+															int whichButton) {
+					ArrayAdapter<String> adapter=(ArrayAdapter<String>)getListAdapter();
+					EditText title=(EditText)addView.findViewById(R.id.title);
+					
+					adapter.add(title.getText().toString());
+				}
+			})
+			.setNegativeButton("Cancel", null)
+			.show();
 	}
 }
