@@ -17,44 +17,30 @@ package com.commonsware.android.messages;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-public class MessageDemo extends Activity implements View.OnClickListener {
-	Button alert;
-	Button toast;
-
+public class MessageDemo extends Activity {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		
 		setContentView(R.layout.main);
-		
-		alert=(Button)findViewById(R.id.alert);
-		alert.setOnClickListener(this);
-		toast=(Button)findViewById(R.id.toast);
-		toast.setOnClickListener(this);
 	}
 	
-	public void onClick(View view) {
-		if (view==alert) {
-			new AlertDialog.Builder(this)
-				.setTitle("MessageDemo")
-				.setMessage("eek!")
-				.setNeutralButton("Close", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dlg, int sumthin) {
-						// do nothing -- it will close on its own
-					}
-				})
-				.show();
-		}
-		else {
-			Toast
-				.makeText(this, "<clink, clink>", Toast.LENGTH_SHORT)
-				.show();
-		}
+	public void showAlert(View view) {
+		new AlertDialog.Builder(this)
+			.setTitle("MessageDemo")
+			.setMessage("Let's raise a toast!")
+			.setNeutralButton("Here, here!", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dlg, int sumthin) {
+					Toast
+						.makeText(MessageDemo.this, "<clink, clink>",
+											Toast.LENGTH_SHORT)
+						.show();
+				}
+			})
+			.show();
 	}
 }
