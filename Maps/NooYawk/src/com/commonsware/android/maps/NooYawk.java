@@ -107,6 +107,8 @@ public class NooYawk extends MapActivity {
 			super(marker);
 			this.marker=marker;
 			
+			boundCenterBottom(marker);
+			
 			items.add(new OverlayItem(getPoint(40.748963847316034,
 																					-73.96807193756104),
 																"UN", "United Nations"));
@@ -131,14 +133,6 @@ public class NooYawk extends MapActivity {
 			return(items.get(i));
 		}
 		
-		@Override
-		public void draw(Canvas canvas, MapView mapView,
-											boolean shadow) {
-			super.draw(canvas, mapView, shadow);
-			
-			boundCenterBottom(marker);
-		}
- 		
 		@Override
 		protected boolean onTap(int i) {
 			Toast.makeText(NooYawk.this,
