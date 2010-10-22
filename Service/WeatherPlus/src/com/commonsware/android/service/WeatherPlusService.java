@@ -218,7 +218,7 @@ public class WeatherPlusService extends Service {
 				String responseBody=client.execute(getMethod, responseHandler);
 				String page=generatePage(buildForecasts(responseBody));
 				
-				synchronized(this) {
+				synchronized(WeatherPlusService.this) {
 					forecast=page;
 				}
 			
