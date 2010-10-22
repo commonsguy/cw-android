@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.TextView;
@@ -30,15 +29,48 @@ public class ChronoDemo extends Activity {
 	DateFormat fmtDateAndTime=DateFormat.getDateTimeInstance();
 	TextView dateAndTimeLabel;
 	Calendar dateAndTime=Calendar.getInstance();
+			
+	@Override
+	public void onCreate(Bundle icicle) {
+		super.onCreate(icicle);
+		setContentView(R.layout.main);
+		
+		dateAndTimeLabel=(TextView)findViewById(R.id.dateAndTime);
+		
+		updateLabel();
+	}
+	
+	public void chooseDate(View v) {
+		new DatePickerDialog(ChronoDemo.this, d,
+													dateAndTime.get(Calendar.YEAR),
+													dateAndTime.get(Calendar.MONTH),
+													dateAndTime.get(Calendar.DAY_OF_MONTH))
+			.show();
+	}
+	
+	public void chooseTime(View v) {
+		new TimePickerDialog(ChronoDemo.this, t,
+													dateAndTime.get(Calendar.HOUR_OF_DAY),
+													dateAndTime.get(Calendar.MINUTE),
+													true)
+			.show();
+	}
+	
+	private void updateLabel() {
+		dateAndTimeLabel.setText(fmtDateAndTime
+															.format(dateAndTime.getTime()));
+	}
+	
 	DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
-								int dayOfMonth) {
+													int dayOfMonth) {
 			dateAndTime.set(Calendar.YEAR, year);
 			dateAndTime.set(Calendar.MONTH, monthOfYear);
 			dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 			updateLabel();
 		}
-	};	
+	};
+	
 	TimePickerDialog.OnTimeSetListener t=new TimePickerDialog.OnTimeSetListener() {
 		public void onTimeSet(TimePicker view, int hourOfDay,
 													int minute) {
@@ -47,43 +79,4 @@ public class ChronoDemo extends Activity {
 			updateLabel();
 		}
 	};	
-			
-	@Override
-	public void onCreate(Bundle icicle) {
-		super.onCreate(icicle);
-		setContentView(R.layout.main);
-		
-		Button btn=(Button)findViewById(R.id.dateBtn);
-		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				new DatePickerDialog(ChronoDemo.this,
-						d,
-						dateAndTime.get(Calendar.YEAR),
-						dateAndTime.get(Calendar.MONTH),
-						dateAndTime.get(Calendar.DAY_OF_MONTH)).show();
-			}
-		});
-		
-		btn=(Button)findViewById(R.id.timeBtn);
-		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				new TimePickerDialog(ChronoDemo.this,
-										t,
-										dateAndTime.get(Calendar.HOUR_OF_DAY),
-										dateAndTime.get(Calendar.MINUTE),
-										true).show();
-			}
-		});
-		
-		dateAndTimeLabel=(TextView)findViewById(R.id.dateAndTime);
-		
-		updateLabel();
-	}
-	
-	private void updateLabel() {
-		dateAndTimeLabel.setText(fmtDateAndTime
-															.format(dateAndTime.getTime()));
-	}
 }

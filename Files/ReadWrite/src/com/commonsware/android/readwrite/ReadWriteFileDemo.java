@@ -36,14 +36,6 @@ public class ReadWriteFileDemo extends Activity {
 		super.onCreate(icicle);
 		setContentView(R.layout.main);
 		editor=(EditText)findViewById(R.id.editor);
-		
-		Button btn=(Button)findViewById(R.id.close);
-		
-		btn.setOnClickListener(new Button.OnClickListener() {
-			public void onClick(View v) {
-				finish();
-			}
-		});
 	}
 	
 	public void onResume() {

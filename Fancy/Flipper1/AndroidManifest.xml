@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 		package="com.commonsware.android.flipper1">
 		<application android:icon="@drawable/cw">
-				<activity android:name=".FlipperDemo" android:label="FlipperDemo">
+				<activity android:name=".FlipperDemo" android:label="@string/app_name">
 						<intent-filter>
 								<action android:name="android.intent.action.MAIN" />
 								<category android:name="android.intent.category.LAUNCHER" />

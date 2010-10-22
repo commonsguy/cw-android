@@ -18,38 +18,36 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AnalogClock;
-import android.widget.Button;
 import android.widget.TabHost;
 
 public class DynamicTabDemo extends Activity {
+	private TabHost tabs=null;
+	
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.main);
 
-		final TabHost tabs=(TabHost)findViewById(R.id.tabhost);
-		
+		tabs=(TabHost)findViewById(R.id.tabhost);
 		tabs.setup();
 		
 		TabHost.TabSpec spec=tabs.newTabSpec("buttontab");
+		
 		spec.setContent(R.id.buttontab);
 		spec.setIndicator("Button");
 		tabs.addTab(spec);
+	}
+	
+	public void addTab(View v) {
+		TabHost.TabSpec spec=tabs.newTabSpec("tag1");
 		
-		Button btn=(Button)tabs.getCurrentView().findViewById(R.id.buttontab);
-		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				TabHost.TabSpec spec=tabs.newTabSpec("tag1");
-				
-				spec.setContent(new TabHost.TabContentFactory() {
-					public View createTabContent(String tag) {
-						return(new AnalogClock(DynamicTabDemo.this));
-					}
-				});
-				spec.setIndicator("Clock");
-				tabs.addTab(spec);
+		spec.setContent(new TabHost.TabContentFactory() {
+			public View createTabContent(String tag) {
+				return(new AnalogClock(DynamicTabDemo.this));
 			}
 		});
+		
+		spec.setIndicator("Clock");
+		tabs.addTab(spec);
 	}
 }

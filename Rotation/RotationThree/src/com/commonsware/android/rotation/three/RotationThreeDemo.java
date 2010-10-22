@@ -48,6 +48,17 @@ public class RotationThreeDemo extends Activity {
 		}
 	}
 
+	public void pickContact(View v) {
+		Intent i=new Intent(Intent.ACTION_PICK,
+												Contacts.CONTENT_URI);
+	
+		startActivityForResult(i, PICK_REQUEST);
+	}
+	
+	public void viewContact(View v) {
+		startActivity(new Intent(Intent.ACTION_VIEW, contact));
+	}
+
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		
@@ -56,26 +67,7 @@ public class RotationThreeDemo extends Activity {
 	
 	private void setupViews() {
 		setContentView(R.layout.main);
-		
-		Button btn=(Button)findViewById(R.id.pick);
-		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent i=new Intent(Intent.ACTION_PICK,
-														Contacts.CONTENT_URI);
-
-				startActivityForResult(i, PICK_REQUEST);
-			}
-		});
-		
 		viewButton=(Button)findViewById(R.id.view);
-		
-		viewButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				startActivity(new Intent(Intent.ACTION_VIEW, contact));
-			}
-		});
-		
 		viewButton.setEnabled(contact!=null);
 	}
 }

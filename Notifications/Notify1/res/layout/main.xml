@@ -8,12 +8,14 @@
 			android:layout_width="fill_parent" 
 			android:layout_height="fill_parent" 
 			android:layout_weight="1"
-			android:text="Click to raise a notification in 5 seconds"
+			android:text="Click to raise a notification"
+			android:onClick="notifyMe"
 			/>
 	<Button android:id="@+id/cancel"
 			android:layout_width="fill_parent" 
 			android:layout_height="fill_parent" 
 			android:layout_weight="1"
 			android:text="Click to clear the notification"
+			android:onClick="clearNotification"
 			/>
 </LinearLayout>

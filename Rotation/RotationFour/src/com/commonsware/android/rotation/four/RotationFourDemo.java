@@ -36,25 +36,7 @@ public class RotationFourDemo extends Activity {
 		
 		setContentView(R.layout.main);
 		
-		Button btn=(Button)findViewById(R.id.pick);
-		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				Intent i=new Intent(Intent.ACTION_PICK,
-														Contacts.CONTENT_URI);
-
-				startActivityForResult(i, PICK_REQUEST);
-			}
-		});
-		
 		viewButton=(Button)findViewById(R.id.view);
-		
-		viewButton.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				startActivity(new Intent(Intent.ACTION_VIEW, contact));
-			}
-		});
-		
 		restoreMe(savedInstanceState);
 		
 		viewButton.setEnabled(contact!=null);
@@ -69,6 +51,17 @@ public class RotationFourDemo extends Activity {
 				viewButton.setEnabled(true);
 			}
 		}
+	}
+
+	public void pickContact(View v) {
+		Intent i=new Intent(Intent.ACTION_PICK,
+												Contacts.CONTENT_URI);
+	
+		startActivityForResult(i, PICK_REQUEST);
+	}
+	
+	public void viewContact(View v) {
+		startActivity(new Intent(Intent.ACTION_VIEW, contact));
 	}
 
 	@Override

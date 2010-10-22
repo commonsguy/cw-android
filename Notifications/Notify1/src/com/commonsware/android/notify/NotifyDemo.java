@@ -21,49 +21,21 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class NotifyDemo extends Activity {
 	private static final int NOTIFY_ME_ID=1337;
-	private Timer timer=new Timer();
 	private int count=0;
+	private NotificationManager mgr=null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		Button btn=(Button)findViewById(R.id.notify);
-		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				TimerTask task=new TimerTask() {
-					public void run() {
-						notifyMe();
-					}
-				};
-		
-				timer.schedule(task, 5000);
-			}
-		});
-		
-		btn=(Button)findViewById(R.id.cancel);
-		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				NotificationManager mgr=
-					(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-					
-				mgr.cancel(NOTIFY_ME_ID);
-			}
-		});
+		mgr=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 	}
 	
-	private void notifyMe() {
-		final NotificationManager mgr=
-			(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+	public void notifyMe(View v) {
 		Notification note=new Notification(R.drawable.stat_notify_chat,
 																				"Status message!",
 																				System.currentTimeMillis());
@@ -76,5 +48,9 @@ public class NotifyDemo extends Activity {
 		note.number=++count;
 		
 		mgr.notify(NOTIFY_ME_ID, note);
+	}
+	
+	public void clearNotification(View v) {
+		mgr.cancel(NOTIFY_ME_ID);
 	}
 }

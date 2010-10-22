@@ -18,7 +18,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import bsh.Interpreter;
@@ -30,29 +29,25 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		setContentView(R.layout.main);
-
-		Button btn=(Button)findViewById(R.id.eval);
-		final EditText script=(EditText)findViewById(R.id.script);
+	}
+	
+	public void go(View v) {
+		EditText script=(EditText)findViewById(R.id.script);
+		String src=script.getText().toString();
 		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				String src=script.getText().toString();
-				
-				try {
-					i.set("context", MainActivity.this);
-					i.eval(src);
-				}
-				catch (bsh.EvalError e) {
-					AlertDialog.Builder builder=
-										new AlertDialog.Builder(MainActivity.this);
-					
-					builder
-						.setTitle("Exception!")
-						.setMessage(e.toString())
-						.setPositiveButton("OK", null)
-						.show();
-				}
-			}
-		});
+		try {
+			i.set("context", MainActivity.this);
+			i.eval(src);
+		}
+		catch (bsh.EvalError e) {
+			AlertDialog.Builder builder=
+								new AlertDialog.Builder(MainActivity.this);
+			
+			builder
+				.setTitle("Exception!")
+				.setMessage(e.toString())
+				.setPositiveButton("OK", null)
+				.show();
+		}
 	}
 }

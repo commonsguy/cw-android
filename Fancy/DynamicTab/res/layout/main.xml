@@ -18,6 +18,7 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"
 				android:text="A semi-random button"
+				android:onClick="addTab"
 			/>
 		</FrameLayout>
 	</LinearLayout>

@@ -19,7 +19,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -34,17 +33,9 @@ public class StringsDemo extends Activity {
 		
 		name=(EditText)findViewById(R.id.name);
 		result=(TextView)findViewById(R.id.result);
-		
-		Button btn=(Button)findViewById(R.id.format);
-		
-		btn.setOnClickListener(new Button.OnClickListener() {
-			public void onClick(View v) {
-				applyFormat();
-			}
-		});
 	}
 	
-	private void applyFormat() {
+	public void applyFormat(View v) {
 		String format=getString(R.string.funky_format);
 		String simpleResult=String.format(format,
 											TextUtils.htmlEncode(name.getText().toString()));

@@ -19,7 +19,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 public class LaunchDemo extends Activity {
@@ -31,18 +30,15 @@ public class LaunchDemo extends Activity {
 		super.onCreate(icicle);
 		setContentView(R.layout.main);
 		
-		Button btn=(Button)findViewById(R.id.map);
 		lat=(EditText)findViewById(R.id.lat);
 		lon=(EditText)findViewById(R.id.lon);
+	}
+	
+	public void showMe(View v) {
+		String _lat=lat.getText().toString();
+		String _lon=lon.getText().toString();
+		Uri uri=Uri.parse("geo:"+_lat+","+_lon);
 		
-		btn.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View view) {
-				String _lat=lat.getText().toString();
-				String _lon=lon.getText().toString();
-				Uri uri=Uri.parse("geo:"+_lat+","+_lon);
-				
-				startActivity(new Intent(Intent.ACTION_VIEW, uri));
-			}
-		});
+		startActivity(new Intent(Intent.ACTION_VIEW, uri));
 	}
 }
