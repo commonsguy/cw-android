@@ -98,7 +98,7 @@ public class WeatherDemo extends Activity {
 		catch (Throwable t) {
 			android.util.Log.e("WeatherDemo", "Exception fetching data", t);
 			Toast
-				.makeText(this, "Request failed: "+t.toString(), 4000)
+				.makeText(this, "Request failed: "+t.toString(), Toast.LENGTH_LONG)
 				.show();
 		}
 	}

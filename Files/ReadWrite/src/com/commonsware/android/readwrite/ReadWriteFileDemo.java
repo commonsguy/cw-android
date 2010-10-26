@@ -63,7 +63,7 @@ public class ReadWriteFileDemo extends Activity {
 		}
 		catch (Throwable t) {
 			Toast
-				.makeText(this, "Exception: "+t.toString(), 2000)
+				.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG)
 				.show();
 		}
 	}
@@ -80,7 +80,7 @@ public class ReadWriteFileDemo extends Activity {
 		}
 		catch (Throwable t) {
 			Toast
-				.makeText(this, "Exception: "+t.toString(), 2000)
+				.makeText(this, "Exception: "+t.toString(), Toast.LENGTH_LONG)
 				.show();
 		}
 	}

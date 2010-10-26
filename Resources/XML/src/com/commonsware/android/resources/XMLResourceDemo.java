@@ -53,7 +53,7 @@ public class XMLResourceDemo extends ListActivity {
 		}
 		catch (Throwable t) {
 			Toast
-				.makeText(this, "Request failed: "+t.toString(), 4000)
+				.makeText(this, "Request failed: "+t.toString(), Toast.LENGTH_LONG)
 				.show();
 		}
 		
