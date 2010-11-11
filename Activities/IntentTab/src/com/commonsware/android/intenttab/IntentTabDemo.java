@@ -28,12 +28,17 @@ public class IntentTabDemo extends TabActivity {
 		super.onCreate(savedInstanceState);
 
 		TabHost host=getTabHost();
+		Intent i=new Intent(this, CWBrowser.class);
 		
+		i.putExtra(CWBrowser.URL, "http://commonsware.com");
 		host.addTab(host.newTabSpec("one")
 						.setIndicator("CW")
-						.setContent(new Intent(this, CWBrowser.class)));
+						.setContent(i));
+		
+		i=new Intent(i);
+		i.putExtra(CWBrowser.URL, "http://www.android.com");
 		host.addTab(host.newTabSpec("two")
 						.setIndicator("Android")
-						.setContent(new Intent(this, AndroidBrowser.class)));
+						.setContent(i));
 	}
 }

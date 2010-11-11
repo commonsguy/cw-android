@@ -21,7 +21,8 @@ import android.os.Bundle;
 import android.webkit.WebView;
 
 public class CWBrowser extends Activity {
-	WebView browser;
+	public static final String URL="com.commonsware.android.intenttab.URL";
+	private WebView browser;
 		
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -29,7 +30,7 @@ public class CWBrowser extends Activity {
 		
 		browser=new WebView(this);
 		setContentView(browser);
-		browser.loadUrl("http://commonsware.com");
+		browser.loadUrl(getIntent().getStringExtra(URL));
 	}			
 }
 
