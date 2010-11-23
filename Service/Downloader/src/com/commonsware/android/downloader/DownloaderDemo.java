@@ -52,7 +52,7 @@ public class DownloaderDemo extends Activity {
 		
 		Intent i=new Intent(this, Downloader.class);
 		
-		i.setData(Uri.parse("http://commonsware.com/index.html"));
+		i.setData(Uri.parse("http://commonsware.com/Android/excerpt.pdf"));
 		i.putExtra(Downloader.EXTRA_MESSENGER, new Messenger(handler));
 		
 		startService(i);
