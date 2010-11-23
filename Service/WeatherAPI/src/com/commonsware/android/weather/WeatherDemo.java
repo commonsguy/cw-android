@@ -29,13 +29,15 @@ import android.os.Bundle;
 import android.os.DeadObjectException;
 import android.os.RemoteException;
 import android.os.IBinder;
+import android.util.Log;
 import android.webkit.WebView;
 import java.util.ArrayList;
 
 public class WeatherDemo extends Activity {
 	private WebView browser;
-	private WeatherBinder weather=null;
 	private LocationManager mgr=null;
+	private State state=null;
+	private boolean isConfigurationChanging=false;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,19 +45,43 @@ public class WeatherDemo extends Activity {
 		setContentView(R.layout.main);
 		
 		browser=(WebView)findViewById(R.id.webkit);
-		bindService(new Intent(this, WeatherService.class),
-								onService, BIND_AUTO_CREATE);
+		state=(State)getLastNonConfigurationInstance();
+		
+		if (state==null) {
+			state=new State();
+			getApplicationContext()
+				.bindService(new Intent(this, WeatherService.class),
+											state.svcConn, BIND_AUTO_CREATE);
+		}
+		else if (state.lastForecast!=null) {
+			showForecast();
+		}
+		
+		state.attach(this);
+		
+		mgr=(LocationManager)getSystemService(LOCATION_SERVICE);
+		mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+																3600000, 0, onLocationChange);
 	}
 	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
 		
-		if (mgr==null) {
+		if (mgr!=null) {
 			mgr.removeUpdates(onLocationChange);
 		}
 		
-		unbindService(onService);
+		if (!isConfigurationChanging) {
+			getApplicationContext().unbindService(state.svcConn);
+		}
+	}
+	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		isConfigurationChanging=true;
+		
+		return(state);
 	}
 	
 	private void goBlooey(Throwable t) {
@@ -68,7 +94,7 @@ public class WeatherDemo extends Activity {
 			.show();
 	}
 	
-	String generatePage(ArrayList<Forecast> forecasts) {
+	static String generatePage(ArrayList<Forecast> forecasts) {
 		StringBuilder bufResult=new StringBuilder("<html><body><table>");
 		
 		bufResult.append("<tr><th width=\"50%\">Time</th>"+
@@ -89,9 +115,19 @@ public class WeatherDemo extends Activity {
 		return(bufResult.toString());
 	}
 	
+	void showForecast() {
+		browser.loadDataWithBaseURL(null, state.lastForecast,
+																	"text/html", "UTF-8", null);
+	}
+	
 	LocationListener onLocationChange=new LocationListener() {
 		public void onLocationChanged(Location location) {
-			new FetchForecastTask().execute(location);
+			if (state.weather!=null) {
+				new FetchForecastTask(state).execute(location);
+			}
+			else {
+				Log.w(getClass().getName(), "Unable to fetch forecast -- no WeatherBinder");
+			}
 		}
 		
 		public void onProviderDisabled(String provider) {
@@ -108,27 +144,18 @@ public class WeatherDemo extends Activity {
 		}
 	};
 	
-	private ServiceConnection onService=new ServiceConnection() {
-		public void onServiceConnected(ComponentName className,
-																	 IBinder rawBinder) {
-			weather=(WeatherBinder)rawBinder;
-			mgr=(LocationManager)getSystemService(LOCATION_SERVICE);
-			mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-																	3600000, 0, onLocationChange);
-		}
-
-		public void onServiceDisconnected(ComponentName className) {
-			weather=null;
-		}
-	};
-	
-	class FetchForecastTask extends AsyncTask<Location, Void, String> {
+	static class FetchForecastTask extends AsyncTask<Location, Void, String> {
 		Exception e=null;
+		State state=null;
+		
+		FetchForecastTask(State state) {
+			this.state=state;
+		}
 		
 		@Override
 		protected String doInBackground(Location... locs) {
 			try {
-				return(generatePage(weather.getForecast(locs[0])));
+				return(generatePage(state.weather.getForecast(locs[0])));
 			}
 			catch (Exception e) {
 				this.e=e;
@@ -140,13 +167,34 @@ public class WeatherDemo extends Activity {
 		@Override
 		protected void onPostExecute(String page) {
 			if (e==null) {
-				browser.loadDataWithBaseURL(null, page, "text/html",
-																		"UTF-8", null);
+				state.lastForecast=page;
+				state.activity.showForecast();
 			}
 			else {
-				goBlooey(e);
+				state.activity.goBlooey(e);
 			}
 		}
+	}
+	
+	static class State {
+		WeatherBinder weather=null;
+		WeatherDemo activity=null;
+		String lastForecast=null;
+		
+		void attach(WeatherDemo activity) {
+			this.activity=activity;
+		}
+		
+		ServiceConnection svcConn=new ServiceConnection() {
+			public void onServiceConnected(ComponentName className,
+																		 IBinder rawBinder) {
+				weather=(WeatherBinder)rawBinder;
+			}
+	
+			public void onServiceDisconnected(ComponentName className) {
+				weather=null;
+			}
+		};
 	}
 }
 
