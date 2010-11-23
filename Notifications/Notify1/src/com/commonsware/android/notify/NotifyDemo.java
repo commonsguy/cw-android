@@ -46,6 +46,8 @@ public class NotifyDemo extends Activity {
 		note.setLatestEventInfo(this, "Notification Title",
 														"This is the notification message", i);
 		note.number=++count;
+		note.vibrate=new long[] {500L, 200L, 200L, 500L};
+		note.flags|=Notification.FLAG_AUTO_CANCEL;
 		
 		mgr.notify(NOTIFY_ME_ID, note);
 	}
