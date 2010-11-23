@@ -21,8 +21,8 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class PlayerService extends Service {
-	public static final String EXTRA_PLAYLIST="com.commonsware.android.fakeplayer.EXTRA_PLAYLIST";
-	public static final String EXTRA_SHUFFLE="com.commonsware.android.fakeplayer.EXTRA_SHUFFLE";
+	public static final String EXTRA_PLAYLIST="EXTRA_PLAYLIST";
+	public static final String EXTRA_SHUFFLE="EXTRA_SHUFFLE";
 	private boolean isPlaying=false;
 	
 	@Override
