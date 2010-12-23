@@ -1,11 +1,12 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		package="com.commonsware.android.fancylists.two">
+<?xml version="1.0"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.commonsware.android.fancylists.two">
 		<application android:icon="@drawable/cw">
 				<activity android:name=".StaticDemo" android:label="StaticDemo">
 						<intent-filter>
-								<action android:name="android.intent.action.MAIN" />
-								<category android:name="android.intent.category.LAUNCHER" />
+								<action android:name="android.intent.action.MAIN"/>
+								<category android:name="android.intent.category.LAUNCHER"/>
 						</intent-filter>
 				</activity>
 		</application>
+  <supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:anyDensity="true"/>
 </manifest>

@@ -1,11 +1,12 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		package="com.commonsware.android.fancylists.four">
+<?xml version="1.0"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.commonsware.android.fancylists.four">
 		<application android:icon="@drawable/cw">
 				<activity android:name=".RecyclingDemo" android:label="RecyclingDemo">
 						<intent-filter>
-								<action android:name="android.intent.action.MAIN" />
-								<category android:name="android.intent.category.LAUNCHER" />
+								<action android:name="android.intent.action.MAIN"/>
+								<category android:name="android.intent.category.LAUNCHER"/>
 						</intent-filter>
 				</activity>
 		</application>
+  <supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:anyDensity="true"/>
 </manifest>
