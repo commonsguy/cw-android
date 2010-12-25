@@ -97,7 +97,7 @@ public class InflationDemo extends ListActivity {
 				return(true);
 		}
 		
-		return(super.onOptionsItemSelected(item));
+		return(super.onContextItemSelected(item));
 	}
 	
 	private void initAdapter() {
