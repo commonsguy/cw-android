@@ -11,5 +11,5 @@
 		<activity android:name=".CWBrowser"/>
 		<activity android:name=".AndroidBrowser"/>
 	</application>
-  <supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:anyDensity="true"/>
+	<supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:anyDensity="true"/>
 </manifest>

@@ -11,5 +11,5 @@
 				</activity>
 				<service android:name="Downloader"/>
 		</application>
-  <supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:anyDensity="true"/>
+	<supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:anyDensity="true"/>
 </manifest>
