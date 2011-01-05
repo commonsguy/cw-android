@@ -53,7 +53,8 @@ public class ConstantsBrowser extends ListActivity {
 	
 		ListAdapter adapter=new SimpleCursorAdapter(this,
 													R.layout.row, constantsCursor,
-													new String[] {"title", "value"},
+													new String[] {DatabaseHelper.TITLE,
+																				DatabaseHelper.VALUE},
 													new int[] {R.id.title, R.id.value});
 		
 		setListAdapter(adapter);
@@ -92,7 +93,6 @@ public class ConstantsBrowser extends ListActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 																		ContextMenu.ContextMenuInfo menuInfo) {
 		menu.add(Menu.NONE, DELETE_ID, Menu.NONE, "Delete")
-				.setIcon(R.drawable.delete)
 				.setAlphabeticShortcut('d');
 	}
 
@@ -160,10 +160,10 @@ public class ConstantsBrowser extends ListActivity {
 	private void processAdd(DialogWrapper wrapper) {
 		ContentValues values=new ContentValues(2);
 		
-		values.put("title", wrapper.getTitle());
-		values.put("value", wrapper.getValue());
+		values.put(DatabaseHelper.TITLE, wrapper.getTitle());
+		values.put(DatabaseHelper.VALUE, wrapper.getValue());
 		
-		db.getWritableDatabase().insert("constants", "title", values);
+		db.getWritableDatabase().insert("constants", DatabaseHelper.TITLE, values);
 		constantsCursor.requery();
 	}
 	
