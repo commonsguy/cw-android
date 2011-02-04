@@ -7,7 +7,7 @@
 	<TableRow>
 		<TextView
 				android:text="Checkbox:"
-				android:paddingRight="5px"
+				android:paddingRight="5dip"
 		/>
 		<TextView android:id="@+id/checkbox"
 		/>
@@ -15,7 +15,7 @@
 	<TableRow>
 		<TextView
 				android:text="Ringtone:"
-				android:paddingRight="5px"
+				android:paddingRight="5dip"
 		/>
 		<TextView android:id="@+id/ringtone"
 		/>
@@ -23,7 +23,7 @@
 	<TableRow>
 		<TextView
 				android:text="Checkbox #2:"
-				android:paddingRight="5px"
+				android:paddingRight="5dip"
 		/>
 		<TextView android:id="@+id/checkbox2"
 		/>
@@ -31,7 +31,7 @@
 	<TableRow>
 		<TextView
 				android:text="Text:"
-				android:paddingRight="5px"
+				android:paddingRight="5dip"
 		/>
 		<TextView android:id="@+id/text"
 		/>
@@ -39,7 +39,7 @@
 	<TableRow>
 		<TextView
 				android:text="List Selection:"
-				android:paddingRight="5px"
+				android:paddingRight="5dip"
 		/>
 		<TextView android:id="@+id/list"
 		/>

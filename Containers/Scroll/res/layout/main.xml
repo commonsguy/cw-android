@@ -9,58 +9,58 @@
 		android:stretchColumns="0">
 		<TableRow>
 			<View
-				android:layout_height="80px"
+				android:layout_height="80dip"
 				android:background="#000000"/>
 			<TextView android:text="#000000"
-				android:paddingLeft="4px"
+				android:paddingLeft="4dip"
 				android:layout_gravity="center_vertical" />
 		</TableRow>
 		<TableRow>
 			<View
-				android:layout_height="80px"
+				android:layout_height="80dip"
 				android:background="#440000" />
 			<TextView android:text="#440000"
-				android:paddingLeft="4px"
+				android:paddingLeft="4dip"
 				android:layout_gravity="center_vertical" />
 		</TableRow>
 		<TableRow>
 			<View
-				android:layout_height="80px"
+				android:layout_height="80dip"
 				android:background="#884400" />
 			<TextView android:text="#884400"
-				android:paddingLeft="4px"
+				android:paddingLeft="4dip"
 				android:layout_gravity="center_vertical" />
 		</TableRow>
 		<TableRow>
 			<View
-				android:layout_height="80px"
+				android:layout_height="80dip"
 				android:background="#aa8844" />
 			<TextView android:text="#aa8844"
-				android:paddingLeft="4px"
+				android:paddingLeft="4dip"
 				android:layout_gravity="center_vertical" />
 		</TableRow>
 		<TableRow>
 			<View
-				android:layout_height="80px"
+				android:layout_height="80dip"
 				android:background="#ffaa88" />
 			<TextView android:text="#ffaa88"
-				android:paddingLeft="4px"
+				android:paddingLeft="4dip"
 				android:layout_gravity="center_vertical" />
 		</TableRow>
 		<TableRow>
 			<View
-				android:layout_height="80px"
+				android:layout_height="80dip"
 				android:background="#ffffaa" />
 			<TextView android:text="#ffffaa"
-				android:paddingLeft="4px"
+				android:paddingLeft="4dip"
 				android:layout_gravity="center_vertical" />
 		</TableRow>
 		<TableRow>
 			<View
-				android:layout_height="80px"
+				android:layout_height="80dip"
 				android:background="#ffffff" />
 			<TextView android:text="#ffffff"
-				android:paddingLeft="4px"
+				android:paddingLeft="4dip"
 				android:layout_gravity="center_vertical" />
 		</TableRow>
 	</TableLayout>

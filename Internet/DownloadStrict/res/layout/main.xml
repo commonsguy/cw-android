@@ -9,7 +9,7 @@
 		android:id="@+id/start"
 		android:text="Start Download"
 		android:layout_width="fill_parent"
-		android:layout_height="0px"
+		android:layout_height="0dip"
 		android:layout_weight="1"
 		android:onClick="startDownload"
 	/>
@@ -17,7 +17,7 @@
 		android:id="@+id/query"
 		android:text="Query Status"
 		android:layout_width="fill_parent"
-		android:layout_height="0px"
+		android:layout_height="0dip"
 		android:layout_weight="1"
 		android:onClick="queryStatus"
 		android:enabled="false"
@@ -25,7 +25,7 @@
 	<Button
 		android:text="View Log"
 		android:layout_width="fill_parent"
-		android:layout_height="0px"
+		android:layout_height="0dip"
 		android:layout_weight="1"
 		android:onClick="viewLog"
 	/>

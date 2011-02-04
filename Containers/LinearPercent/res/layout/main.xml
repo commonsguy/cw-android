@@ -8,19 +8,19 @@
 	<Button
 		android:text="Fifty Percent"
 		android:layout_width="fill_parent"
-		android:layout_height="0px"
+		android:layout_height="0dip"
 		android:layout_weight="50"
 	/>
 	<Button
 		android:text="Thirty Percent"
 		android:layout_width="fill_parent"
-		android:layout_height="0px"
+		android:layout_height="0dip"
 		android:layout_weight="30"
 	/>
 	<Button
 		android:text="Twenty Percent"
 		android:layout_width="fill_parent"
-		android:layout_height="0px"
+		android:layout_height="0dip"
 		android:layout_weight="20"
 	/>
 </LinearLayout>

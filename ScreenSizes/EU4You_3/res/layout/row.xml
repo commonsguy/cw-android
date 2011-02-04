@@ -9,7 +9,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical|left"
-		android:paddingRight="4px"
+		android:paddingRight="4dip"
 	/>
 	<TextView android:id="@+id/name"
 		android:layout_width="wrap_content"

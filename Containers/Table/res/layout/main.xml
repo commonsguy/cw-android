@@ -11,7 +11,7 @@
 			android:layout_span="3"/>
 	</TableRow>
 	<View
-		android:layout_height="2px"
+		android:layout_height="2dip"
 		android:background="#0000FF" />
 	<TableRow>
 		<Button android:id="@+id/cancel"
