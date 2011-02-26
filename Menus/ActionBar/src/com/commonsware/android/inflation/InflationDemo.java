@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -158,6 +159,10 @@ public class InflationDemo extends ListActivity {
 																	KeyEvent event) {
 			if (event==null || event.getAction()==KeyEvent.ACTION_UP) {
 				addWord(v);
+		
+				InputMethodManager imm=(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+
+				imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 			}
 			
 			return(true);

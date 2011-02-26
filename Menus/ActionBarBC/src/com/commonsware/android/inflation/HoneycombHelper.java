@@ -15,13 +15,10 @@
 package com.commonsware.android.inflation;
 
 import android.view.Menu;
-import android.widget.EditText;
+import android.view.View;
 
 class HoneycombHelper {
-	static EditText getAddField(Menu menu) {
-		return((EditText)menu
-											.findItem(R.id.add)
-											.getActionView()
-											.findViewById(R.id.title));
+	static View getAddActionView(Menu menu) {
+		return(menu.findItem(R.id.add).getActionView());
 	}
 }
