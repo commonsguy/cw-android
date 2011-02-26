@@ -123,7 +123,7 @@ public class WeatherDemo extends Activity {
 	LocationListener onLocationChange=new LocationListener() {
 		public void onLocationChanged(Location location) {
 			if (state.weather!=null) {
-				new FetchForecastTask(state).execute(location);
+				state.weather.getForecast(location, state);
 			}
 			else {
 				Log.w(getClass().getName(), "Unable to fetch forecast -- no WeatherBinder");
@@ -144,45 +144,22 @@ public class WeatherDemo extends Activity {
 		}
 	};
 	
-	static class FetchForecastTask extends AsyncTask<Location, Void, String> {
-		Exception e=null;
-		State state=null;
-		
-		FetchForecastTask(State state) {
-			this.state=state;
-		}
-		
-		@Override
-		protected String doInBackground(Location... locs) {
-			try {
-				return(generatePage(state.weather.getForecast(locs[0])));
-			}
-			catch (Exception e) {
-				this.e=e;
-			}
-			
-			return(null);
-		}
-		
-		@Override
-		protected void onPostExecute(String page) {
-			if (e==null) {
-				state.lastForecast=page;
-				state.activity.showForecast();
-			}
-			else {
-				state.activity.goBlooey(e);
-			}
-		}
-	}
-	
-	static class State {
+	static class State implements WeatherListener {
 		WeatherBinder weather=null;
 		WeatherDemo activity=null;
 		String lastForecast=null;
 		
 		void attach(WeatherDemo activity) {
 			this.activity=activity;
+		}
+		
+		public void updateForecast(ArrayList<Forecast> forecast) {
+			lastForecast=generatePage(forecast);
+			activity.showForecast();
+		}
+		
+		public void handleError(Exception e) {
+			activity.goBlooey(e);
 		}
 		
 		ServiceConnection svcConn=new ServiceConnection() {

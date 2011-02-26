@@ -18,6 +18,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Binder;
 import android.os.Bundle;
 import java.io.IOException;
@@ -49,14 +50,8 @@ public class WeatherBinder extends Binder {
 		client.getConnectionManager().shutdown();
 	}
 	
-	ArrayList<Forecast> getForecast(Location loc) throws Exception {
-		String url=String.format(format, loc.getLatitude(),
-															loc.getLongitude());
-		HttpGet getMethod=new HttpGet(url);
-		ResponseHandler<String> responseHandler=new BasicResponseHandler();
-		String responseBody=client.execute(getMethod, responseHandler);
-		
-		return(buildForecasts(responseBody));
+	void getForecast(Location loc, WeatherListener listener) {
+		new FetchForecastTask(listener).execute(loc);
 	}
 	
 	private ArrayList<Forecast> buildForecasts(String raw) throws Exception {
@@ -94,5 +89,48 @@ public class WeatherBinder extends Binder {
 		}
 		
 		return(forecasts);
+	}
+	
+	class FetchForecastTask extends AsyncTask<Location, Void, ArrayList<Forecast>> {
+		Exception e=null;
+		WeatherListener listener=null;
+		
+		FetchForecastTask(WeatherListener listener) {
+			this.listener=listener;
+		}
+		
+		@Override
+		protected ArrayList<Forecast> doInBackground(Location... locs) {
+			ArrayList<Forecast> result=null;
+			
+			try {
+				Location loc=locs[0];
+				String url=String.format(format, loc.getLatitude(),
+																	loc.getLongitude());
+				HttpGet getMethod=new HttpGet(url);
+				ResponseHandler<String> responseHandler=new BasicResponseHandler();
+				String responseBody=client.execute(getMethod, responseHandler);
+				
+				result=buildForecasts(responseBody);
+			}
+			catch (Exception e) {
+				this.e=e;
+			}
+			
+			return(result);
+		}
+		
+		@Override
+		protected void onPostExecute(ArrayList<Forecast> forecast) {
+			if (listener!=null) {
+				if (forecast!=null) {
+					listener.updateForecast(forecast);
+				}
+				
+				if (e!=null) {
+					listener.handleError(e);
+				}
+			}
+		}
 	}
 }

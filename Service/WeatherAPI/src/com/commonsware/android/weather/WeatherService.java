@@ -17,6 +17,7 @@ package com.commonsware.android.weather;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import java.util.ArrayList;
 
 public class WeatherService extends Service {
 	private final WeatherBinder binder=new WeatherBinder();
