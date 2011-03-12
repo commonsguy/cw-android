@@ -14,12 +14,17 @@
 
 package com.commonsware.android.eu4you;
 
-import android.support.v4.app.FragmentActivity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
 
 public class EU4You extends FragmentActivity implements CountryListener {
+	private boolean detailsInline=false;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,27 +36,34 @@ public class EU4You extends FragmentActivity implements CountryListener {
 		
 		countries.setCountryListener(this);
 		
-		if (getSupportFragmentManager()
-					.findFragmentById(R.id.details)!=null) {
+		Fragment f=getSupportFragmentManager().findFragmentById(R.id.details);
+		
+		detailsInline=(f!=null &&
+										(getResources().getConfiguration().orientation==
+											Configuration.ORIENTATION_LANDSCAPE));
+		
+		if (detailsInline) {
 			countries.enablePersistentSelection();
+		}
+		else if (f!=null) {
+			f.getView().setVisibility(View.GONE);
 		}
 	}
 	
 	@Override
 	public void onCountrySelected(Country c) {
 		String url=getString(c.url);
-		DetailsFragment details
-			=(DetailsFragment)getSupportFragmentManager()
-														.findFragmentById(R.id.details);
 														
-		if (details==null) {
+		if (detailsInline) {
+			((DetailsFragment)getSupportFragmentManager()
+														.findFragmentById(R.id.details))
+														.loadUrl(url);														
+		}
+		else {
 			Intent i=new Intent(this, DetailsActivity.class);
 			
 			i.putExtra(DetailsActivity.EXTRA_URL, url);
 			startActivity(i);
-		}
-		else {
-			details.loadUrl(url);														
 		}
 	}
 }
