@@ -22,19 +22,13 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 public class DetailsFragment extends Fragment {
-	private static int WEBVIEW_ID=0x1337;
-	
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
-		WebView content=new WebView(getActivity());
-		
-		content.setId(WEBVIEW_ID);
-		
-    return(content);
+    return(inflater.inflate(R.layout.details_fragment, container, false));
   }
 	
 	public void loadUrl(String url) {
-		((WebView)(getView().findViewById(WEBVIEW_ID))).loadUrl(url);
+		((WebView)(getView().findViewById(R.id.browser))).loadUrl(url);
 	}
 }

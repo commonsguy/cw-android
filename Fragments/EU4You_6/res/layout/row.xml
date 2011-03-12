@@ -4,6 +4,7 @@
 	android:layout_height="wrap_content"
 	android:padding="2dip"
 	android:minHeight="?android:attr/listPreferredItemHeight"
+	style="@style/activated"
 >
 	<ImageView android:id="@+id/flag"
 		android:layout_width="wrap_content"
