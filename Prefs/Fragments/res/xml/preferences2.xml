@@ -1,0 +1,8 @@
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<CheckBoxPreference
+		android:key="checkbox2"
+		android:title="Another Checkbox"
+		android:summary="On. Off. It really doesn't matter."
+	/>
+</PreferenceScreen>
