@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	<fragment class="com.commonsware.android.eu4you.DetailsFragment"
-		android:id="@+id/details"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-	/>
-</FrameLayout>
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+	class="com.commonsware.android.eu4you.DetailsFragment"
+	android:id="@+id/details"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+/>
