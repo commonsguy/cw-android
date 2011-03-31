@@ -39,9 +39,9 @@ public class MapFragment extends Fragment {
 	private MapView map=null;
 	private MyLocationOverlay me=null;
 	
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState) {
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+														Bundle savedInstanceState) {
 		return(new FrameLayout(getActivity()));
 	}
 	
@@ -68,7 +68,7 @@ public class MapFragment extends Fragment {
 		map.getOverlays().add(me);
 		
 		((ViewGroup)getView()).addView(map);
-  }
+	}
 	
 	@Override
 	public void onResume() {

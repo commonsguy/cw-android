@@ -25,4 +25,3 @@ public class EditPreferences extends PreferenceActivity {
 		loadHeadersFromResource(R.xml.preference_headers, target);
 	}
 }
-

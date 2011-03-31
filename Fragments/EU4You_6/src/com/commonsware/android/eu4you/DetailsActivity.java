@@ -20,8 +20,8 @@ import android.net.Uri;
 import android.os.Bundle;
 
 public class DetailsActivity extends FragmentActivity {
-  public static final String EXTRA_URL="com.commonsware.android.eu4you.EXTRA_URL";
-  
+	public static final String EXTRA_URL="com.commonsware.android.eu4you.EXTRA_URL";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

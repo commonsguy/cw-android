@@ -61,7 +61,7 @@ public class WeatherDemo extends Activity {
 		
 		mgr=(LocationManager)getSystemService(LOCATION_SERVICE);
 		mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-																3600000, 0, onLocationChange);
+																3600000, 1000, onLocationChange);
 	}
 	
 	@Override

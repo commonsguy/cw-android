@@ -15,5 +15,5 @@
 package com.commonsware.android.eu4you;
 
 public interface CountryListener {
-  void onCountrySelected(Country c);
+	void onCountrySelected(Country c);
 }

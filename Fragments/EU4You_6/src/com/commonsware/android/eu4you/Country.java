@@ -15,13 +15,13 @@
 package com.commonsware.android.eu4you;
 	
 public class Country {
-  int name;
-  int flag;
-  int url;
-  
-  Country(int name, int flag, int url) {
-    this.name=name;
-    this.flag=flag;
-    this.url=url;
-  }
+	int name;
+	int flag;
+	int url;
+	
+	Country(int name, int flag, int url) {
+		this.name=name;
+		this.flag=flag;
+		this.url=url;
+	}
 }
