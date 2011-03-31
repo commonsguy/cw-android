@@ -22,7 +22,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.view.View;
 import android.widget.Button;
-import android.util.Log;
+import android.widget.LinearLayout;
 
 public class RotationThreeDemo extends Activity {
 	static final int PICK_REQUEST=1337;
@@ -33,7 +33,9 @@ public class RotationThreeDemo extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		setupViews();
+		setContentView(R.layout.main);
+		viewButton=(Button)findViewById(R.id.view);
+		viewButton.setEnabled(contact!=null);
 	}
 
 	@Override
@@ -61,12 +63,13 @@ public class RotationThreeDemo extends Activity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		
-		setupViews();
-	}
-	
-	private void setupViews() {
-		setContentView(R.layout.main);
-		viewButton=(Button)findViewById(R.id.view);
-		viewButton.setEnabled(contact!=null);
+		LinearLayout container=(LinearLayout)findViewById(R.id.container);
+		
+		if (newConfig.orientation==Configuration.ORIENTATION_LANDSCAPE) {
+			container.setOrientation(LinearLayout.HORIZONTAL);
+		}
+		else {
+			container.setOrientation(LinearLayout.VERTICAL);
+		}
 	}
 }
