@@ -89,8 +89,8 @@ public class CountriesFragment extends ListFragment {
 											 R.string.united_kingdom_url));
 	}
 	
-  @Override
-  public void onCreate(Bundle state) {
+	@Override
+	public void onActivityCreated(Bundle state) {
 		super.onCreate(state);
 		
 		setListAdapter(new CountryAdapter());
@@ -102,17 +102,17 @@ public class CountriesFragment extends ListFragment {
 				getListView().setItemChecked(position, true);
 			}
 		}
-  }
+	}
 
-  @Override
-  public void onListItemClick(ListView l, View v, int position,
+	@Override
+	public void onListItemClick(ListView l, View v, int position,
 															long id) {
 		l.setItemChecked(position, true);
 		
 		if (listener!=null) {
 			listener.onCountrySelected(EU.get(position));
 		}
-  }
+	}
 	
 	@Override
 	public void onSaveInstanceState(Bundle state) {
