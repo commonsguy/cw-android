@@ -17,7 +17,6 @@
 			<AnalogClock android:id="@+id/tab1"
 				android:layout_width="fill_parent" 
 				android:layout_height="fill_parent"
-				android:layout_centerHorizontal="true"
 			/>
 			<Button android:id="@+id/tab2"
 				android:layout_width="fill_parent"
