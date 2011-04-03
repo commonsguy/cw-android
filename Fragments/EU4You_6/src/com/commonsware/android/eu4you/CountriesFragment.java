@@ -91,7 +91,7 @@ public class CountriesFragment extends ListFragment {
 	
 	@Override
 	public void onActivityCreated(Bundle state) {
-		super.onCreate(state);
+		super.onActivityCreated(state);
 		
 		setListAdapter(new CountryAdapter());
 		
