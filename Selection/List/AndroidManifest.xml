@@ -1,12 +1,18 @@
 <?xml version="1.0"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.commonsware.android.list">
-	<application android:icon="@drawable/cw">
-		<activity android:name=".ListViewDemo" android:label="ListViewDemo">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
-				<category android:name="android.intent.category.LAUNCHER"/>
-			</intent-filter>
-		</activity>
-	</application>
-	<supports-screens android:largeScreens="true" android:normalScreens="true" android:smallScreens="true" android:anyDensity="true"/>
+<manifest package="com.commonsware.android.list"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+          
+  <application android:icon="@drawable/cw">
+    <activity android:label="ListViewDemo"
+              android:name=".ListViewDemo">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  </application>
+  <supports-screens android:anyDensity="true"
+                    android:largeScreens="true"
+                    android:normalScreens="true"
+                    android:smallScreens="true" />
 </manifest>
