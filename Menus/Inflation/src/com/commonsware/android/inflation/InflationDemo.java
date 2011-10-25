@@ -14,6 +14,7 @@
 
 package com.commonsware.android.inflation;
 
+import java.util.ArrayList;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -26,9 +27,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import java.util.ArrayList;
 
 public class InflationDemo extends ListActivity {
 	private static final String[] items={"lorem", "ipsum", "dolor",
@@ -74,7 +72,8 @@ public class InflationDemo extends ListActivity {
 		return(super.onOptionsItemSelected(item));
 	}
 
-	@Override
+	@SuppressWarnings("unchecked")
+  @Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterView.AdapterContextMenuInfo info=
 			(AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
@@ -119,7 +118,8 @@ public class InflationDemo extends ListActivity {
 			.setView(addView)
 			.setPositiveButton("OK",
 													new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog,
+				@SuppressWarnings("unchecked")
+        public void onClick(DialogInterface dialog,
 															int whichButton) {
 					ArrayAdapter<String> adapter=(ArrayAdapter<String>)getListAdapter();
 					EditText title=(EditText)addView.findViewById(R.id.title);

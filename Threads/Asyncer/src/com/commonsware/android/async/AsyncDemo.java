@@ -33,14 +33,14 @@ public class AsyncDemo extends ListActivity {
 																			"porttitor", "sodales",
 																			"pellentesque", "augue",
 																			"purus"};
-	@Override
+  @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
 		setListAdapter(new ArrayAdapter<String>(this,
 												android.R.layout.simple_list_item_1,
-												new ArrayList()));
+												new ArrayList<String>()));
 		
 		new AddStringTask().execute();
 	}
@@ -56,9 +56,10 @@ public class AsyncDemo extends ListActivity {
 			return(null);
 		}
 		
-		@Override
+		@SuppressWarnings("unchecked")
+    @Override
 		protected void onProgressUpdate(String... item) {
-			((ArrayAdapter)getListAdapter()).add(item[0]);
+			((ArrayAdapter<String>)getListAdapter()).add(item[0]);
 		}
 		
 		@Override
