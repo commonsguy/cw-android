@@ -158,10 +158,8 @@ public class CountriesFragment extends ListFragment {
 	static class CountryWrapper {
 		private TextView name=null;
 		private ImageView flag=null;
-		private View row=null;
 		
 		CountryWrapper(View row) {
-			this.row=row;
 			name=(TextView)row.findViewById(R.id.name);
 			flag=(ImageView)row.findViewById(R.id.flag);
 		}
