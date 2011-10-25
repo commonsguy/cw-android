@@ -15,24 +15,18 @@
 	 
 package com.commonsware.android.maps;
 
-import android.app.Activity;
+import java.util.ArrayList;
+import java.util.List;
 import android.graphics.drawable.Drawable;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
-import com.google.android.maps.MapView.LayoutParams;
 import com.google.android.maps.MyLocationOverlay;
 import com.google.android.maps.OverlayItem;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NooYawk extends MapActivity {
 	private MapView map=null;

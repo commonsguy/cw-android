@@ -14,13 +14,10 @@
 
 package com.commonsware.android.fancylists.three;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.app.ListActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.LayoutInflater;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;

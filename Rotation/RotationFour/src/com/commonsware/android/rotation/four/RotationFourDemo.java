@@ -16,13 +16,11 @@ package com.commonsware.android.rotation.four;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract.Contacts;
 import android.view.View;
 import android.widget.Button;
-import android.util.Log;
 
 public class RotationFourDemo extends Activity {
 	static final int PICK_REQUEST=1337;

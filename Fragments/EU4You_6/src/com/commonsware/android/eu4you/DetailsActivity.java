@@ -14,10 +14,8 @@
 
 package com.commonsware.android.eu4you;
 
-import android.support.v4.app.FragmentActivity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 public class DetailsActivity extends FragmentActivity {
 	public static final String EXTRA_URL="com.commonsware.android.eu4you.EXTRA_URL";
