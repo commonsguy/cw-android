@@ -14,20 +14,11 @@
 
 package com.commonsware.android.weather;
 
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.location.Location;
-import android.os.AsyncTask;
-import android.os.Binder;
-import android.os.Bundle;
-import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -35,21 +26,17 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import android.location.Location;
+import android.os.AsyncTask;
+import android.os.Binder;
 
 public class WeatherBinder extends Binder {
-	private String forecast=null;
-	private HttpClient client=null;
 	private String format=null;
+	
+	WeatherBinder(String format) {
+	  this.format=format;
+	}
 
-	void onCreate(Context ctxt) {
-		client=new DefaultHttpClient();
-		format=ctxt.getString(R.string.url);
-	}
-	
-	void onDestroy() {
-		client.getConnectionManager().shutdown();
-	}
-	
 	void getForecast(Location loc, WeatherListener listener) {
 		new FetchForecastTask(listener).execute(loc);
 	}
@@ -101,6 +88,7 @@ public class WeatherBinder extends Binder {
 		
 		@Override
 		protected ArrayList<Forecast> doInBackground(Location... locs) {
+		  DefaultHttpClient client=new DefaultHttpClient();
 			ArrayList<Forecast> result=null;
 			
 			try {
@@ -117,6 +105,8 @@ public class WeatherBinder extends Binder {
 				this.e=e;
 			}
 			
+	    client.getConnectionManager().shutdown();
+	    
 			return(result);
 		}
 		

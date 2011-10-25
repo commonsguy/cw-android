@@ -17,27 +17,19 @@ package com.commonsware.android.weather;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import java.util.ArrayList;
 
 public class WeatherService extends Service {
-	private final WeatherBinder binder=new WeatherBinder();
+	private WeatherBinder binder=null;
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		
-		binder.onCreate(this);
+		binder=new WeatherBinder(getString(R.string.url));
 	}
 	
 	@Override
 	public IBinder onBind(Intent intent) {
 		return(binder);
-	}
-	
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-
-		binder.onDestroy();		
 	}
 }

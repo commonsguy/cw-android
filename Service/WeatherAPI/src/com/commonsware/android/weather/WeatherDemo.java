@@ -14,24 +14,19 @@
 
 package com.commonsware.android.weather;
 
+import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.DeadObjectException;
-import android.os.RemoteException;
 import android.os.IBinder;
 import android.util.Log;
 import android.webkit.WebView;
-import java.util.ArrayList;
 
 public class WeatherDemo extends Activity {
 	private WebView browser;
@@ -51,7 +46,7 @@ public class WeatherDemo extends Activity {
 			state=new State();
 			getApplicationContext()
 				.bindService(new Intent(this, WeatherService.class),
-											state.svcConn, BIND_AUTO_CREATE);
+											state, BIND_AUTO_CREATE);
 		}
 		else if (state.lastForecast!=null) {
 			showForecast();
@@ -73,7 +68,7 @@ public class WeatherDemo extends Activity {
 		}
 		
 		if (!isConfigurationChanging) {
-			getApplicationContext().unbindService(state.svcConn);
+			getApplicationContext().unbindService(state);
 		}
 	}
 	
@@ -144,7 +139,8 @@ public class WeatherDemo extends Activity {
 		}
 	};
 	
-	static class State implements WeatherListener {
+	static class State
+	  implements WeatherListener, ServiceConnection {
 		WeatherBinder weather=null;
 		WeatherDemo activity=null;
 		String lastForecast=null;
@@ -162,16 +158,14 @@ public class WeatherDemo extends Activity {
 			activity.goBlooey(e);
 		}
 		
-		ServiceConnection svcConn=new ServiceConnection() {
-			public void onServiceConnected(ComponentName className,
-																		 IBinder rawBinder) {
-				weather=(WeatherBinder)rawBinder;
-			}
-	
-			public void onServiceDisconnected(ComponentName className) {
-				weather=null;
-			}
-		};
+		public void onServiceConnected(ComponentName className,
+																	 IBinder rawBinder) {
+			weather=(WeatherBinder)rawBinder;
+		}
+
+		public void onServiceDisconnected(ComponentName className) {
+			weather=null;
+		}
 	}
 }
 
