@@ -1,12 +1,12 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
-		<header android:fragment="com.commonsware.android.preffrags.StockPreferenceFragment"
-						android:title="Original"
-						android:summary="The original set from the other examples">
-			<extra android:name="resource" android:value="preferences" />
-		</header>
-		<header android:fragment="com.commonsware.android.preffrags.StockPreferenceFragment"
-						android:title="Other Stuff"
-						android:summary="Well, we needed to show two sets here...">
-			<extra android:name="resource" android:value="preferences2" />
-		</header>
+    <header android:fragment="com.commonsware.android.preffrags.StockPreferenceFragment"
+            android:title="Original"
+            android:summary="The original set from the other examples">
+      <extra android:name="resource" android:value="preferences" />
+    </header>
+    <header android:fragment="com.commonsware.android.preffrags.StockPreferenceFragment"
+            android:title="Other Stuff"
+            android:summary="Well, we needed to show two sets here...">
+      <extra android:name="resource" android:value="preferences2" />
+    </header>
 </preference-headers>
