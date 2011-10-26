@@ -26,7 +26,7 @@ public class HandlerDemo extends Activity {
   Handler handler=new Handler() {
     @Override
     public void handleMessage(Message msg) {
-      bar.incrementProgressBy(5);
+      bar.incrementProgressBy(msg.arg1);
     }
   };
   AtomicBoolean isRunning=new AtomicBoolean(false);
@@ -38,8 +38,9 @@ public class HandlerDemo extends Activity {
     bar=(ProgressBar)findViewById(R.id.progress);
   }
   
-  public void onStart() {
-    super.onStart();
+  @Override
+  public void onResume() {
+    super.onResume();
     bar.setProgress(0);
     
     Thread background=new Thread(new Runnable() {
@@ -47,7 +48,11 @@ public class HandlerDemo extends Activity {
         try {
           for (int i=0;i<20 && isRunning.get();i++) {
             Thread.sleep(1000);
-            handler.sendMessage(handler.obtainMessage());
+            
+            Message msg=handler.obtainMessage();
+            
+            msg.arg1=5;
+            msg.sendToTarget();
           }
         }
         catch (Throwable t) {
@@ -60,8 +65,9 @@ public class HandlerDemo extends Activity {
     background.start();
   }
   
-  public void onStop() {
-    super.onStop();
+  @Override
+  public void onPause() {
     isRunning.set(false);
+    super.onPause();
   }
 }
