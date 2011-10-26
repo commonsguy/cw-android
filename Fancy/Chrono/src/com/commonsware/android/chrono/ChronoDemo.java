@@ -14,19 +14,18 @@
 
 package com.commonsware.android.chrono;
 
+import java.util.Calendar;
 import android.app.Activity;
-import android.os.Bundle;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.TextView;
-import java.text.DateFormat;
-import java.util.Calendar;
+import android.widget.TimePicker;
 
 public class ChronoDemo extends Activity {
-  DateFormat fmtDateAndTime=DateFormat.getDateTimeInstance();
   TextView dateAndTimeLabel;
   Calendar dateAndTime=Calendar.getInstance();
       
@@ -57,8 +56,11 @@ public class ChronoDemo extends Activity {
   }
   
   private void updateLabel() {
-    dateAndTimeLabel.setText(fmtDateAndTime
-                              .format(dateAndTime.getTime()));
+    dateAndTimeLabel
+      .setText(DateUtils
+                 .formatDateTime(this,
+                                 dateAndTime.getTimeInMillis(),
+                                 DateUtils.FORMAT_SHOW_DATE|DateUtils.FORMAT_SHOW_TIME));
   }
   
   DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
