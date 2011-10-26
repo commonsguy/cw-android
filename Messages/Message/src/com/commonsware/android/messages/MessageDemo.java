@@ -33,7 +33,7 @@ public class MessageDemo extends Activity {
     new AlertDialog.Builder(this)
       .setTitle("MessageDemo")
       .setMessage("Let's raise a toast!")
-      .setNeutralButton("Here, here!", new DialogInterface.OnClickListener() {
+      .setNeutralButton("Hear, hear!", new DialogInterface.OnClickListener() {
         public void onClick(DialogInterface dlg, int sumthin) {
           Toast
             .makeText(MessageDemo.this, "<clink, clink>",
