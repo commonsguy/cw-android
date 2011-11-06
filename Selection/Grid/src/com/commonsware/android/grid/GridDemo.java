@@ -24,7 +24,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 public class GridDemo extends Activity
-  implements AdapterView.OnItemSelectedListener {
+  implements AdapterView.OnItemClickListener {
   private TextView selection;
   private static final String[] items={"lorem", "ipsum", "dolor",
           "sit", "amet",
@@ -43,15 +43,11 @@ public class GridDemo extends Activity
     g.setAdapter(new ArrayAdapter<String>(this,
                         R.layout.cell,
                         items));
-    g.setOnItemSelectedListener(this);
+    g.setOnItemClickListener(this);
   }
   
-  public void onItemSelected(AdapterView<?> parent, View v,
+  public void onItemClick(AdapterView<?> parent, View v,
                               int position, long id) {
     selection.setText(items[position]);
-  }
-  
-  public void onNothingSelected(AdapterView<?> parent) {
-    selection.setText("");
   }
 }
