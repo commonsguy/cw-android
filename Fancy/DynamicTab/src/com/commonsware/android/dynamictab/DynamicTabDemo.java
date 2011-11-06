@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AnalogClock;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 public class DynamicTabDemo extends Activity {
   private TabHost tabs=null;
@@ -34,7 +35,7 @@ public class DynamicTabDemo extends Activity {
     TabHost.TabSpec spec=tabs.newTabSpec("buttontab");
     
     spec.setContent(R.id.buttontab);
-    spec.setIndicator("Button");
+    spec.setIndicator(buildTabIndicator("Button"));
     tabs.addTab(spec);
   }
   
@@ -47,7 +48,18 @@ public class DynamicTabDemo extends Activity {
       }
     });
     
-    spec.setIndicator("Clock");
+    spec.setIndicator(buildTabIndicator("Clock"));
     tabs.addTab(spec);
+  }
+  
+  private View buildTabIndicator(String msg) {
+    View indicator=getLayoutInflater().inflate(R.layout.tab_indicator,
+                                                 tabs.getTabWidget(),
+                                                 false);
+    TextView tv=(TextView)indicator.findViewById(R.id.title);
+    
+    tv.setText(msg);
+    
+    return(indicator);
   }
 }
