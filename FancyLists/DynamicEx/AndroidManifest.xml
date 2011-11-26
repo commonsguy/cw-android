@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<manifest package="com.commonsware.android.fancylists.three"
+<manifest package="com.commonsware.android.fancylists.threex"
           xmlns:android="http://schemas.android.com/apk/res/android">
           
   <application android:icon="@drawable/cw">
     <activity android:label="DynamicDemo"
-              android:name=".DynamicDemo">
+              android:name="com.commonsware.android.fancylists.threexx.DynamicDemo">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

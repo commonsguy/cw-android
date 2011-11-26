@@ -95,11 +95,9 @@ public class NooYawk extends MapActivity {
     
   private class SitesOverlay extends ItemizedOverlay<OverlayItem> {
     private List<OverlayItem> items=new ArrayList<OverlayItem>();
-    private Drawable marker=null;
     
     public SitesOverlay(Drawable marker) {
       super(marker);
-      this.marker=marker;
       
       boundCenterBottom(marker);
       

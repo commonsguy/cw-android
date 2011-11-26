@@ -4,13 +4,13 @@
   android:orientation="horizontal"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent">
-  <fragment class="com.commonsware.android.eu4you.CountriesFragment"
+  <fragment class="com.commonsware.android.eu4you6.CountriesFragment"
     android:id="@+id/countries"
     android:layout_weight="30"
     android:layout_width="0px"
     android:layout_height="fill_parent"
   />
-  <fragment class="com.commonsware.android.eu4you.DetailsFragment"
+  <fragment class="com.commonsware.android.eu4you6.DetailsFragment"
     android:id="@+id/details"
     android:layout_weight="70"
     android:layout_width="0px"

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<manifest package="com.commonsware.android.readwrite"
+<manifest package="com.commonsware.android.rwthreads"
           xmlns:android="http://schemas.android.com/apk/res/android">
           
   <application android:icon="@drawable/cw">
     <activity android:label="ReadWriteFileDemo"
-              android:name=".ReadWriteFileDemo">
+              android:name="com.commonsware.android.rwthreads.ReadWriteFileDemo">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
