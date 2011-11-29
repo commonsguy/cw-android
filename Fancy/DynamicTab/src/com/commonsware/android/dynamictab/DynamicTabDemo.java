@@ -10,7 +10,7 @@
 	
   From _The Busy Coder's Guide to Android Development_
     http://commonsware.com/Android
-*/
+ */
 
 package com.commonsware.android.dynamictab;
 
@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 public class DynamicTabDemo extends Activity {
   private TabHost tabs=null;
-  
+
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
@@ -31,35 +31,35 @@ public class DynamicTabDemo extends Activity {
 
     tabs=(TabHost)findViewById(R.id.tabhost);
     tabs.setup();
-    
+
     TabHost.TabSpec spec=tabs.newTabSpec("buttontab");
-    
+
     spec.setContent(R.id.buttontab);
     spec.setIndicator(buildTabIndicator("Button"));
     tabs.addTab(spec);
   }
-  
+
   public void addTab(View v) {
     TabHost.TabSpec spec=tabs.newTabSpec("tag1");
-    
+
     spec.setContent(new TabHost.TabContentFactory() {
       public View createTabContent(String tag) {
         return(new AnalogClock(DynamicTabDemo.this));
       }
     });
-    
+
     spec.setIndicator(buildTabIndicator("Clock"));
     tabs.addTab(spec);
   }
-  
+
   private View buildTabIndicator(String msg) {
-    View indicator=getLayoutInflater().inflate(R.layout.tab_indicator,
-                                                 tabs.getTabWidget(),
-                                                 false);
+    View indicator=
+        getLayoutInflater().inflate(R.layout.tab_indicator,
+                                    tabs.getTabWidget(), false);
     TextView tv=(TextView)indicator.findViewById(R.id.title);
-    
+
     tv.setText(msg);
-    
+
     return(indicator);
   }
 }
