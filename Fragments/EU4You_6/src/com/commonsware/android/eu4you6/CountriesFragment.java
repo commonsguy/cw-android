@@ -116,6 +116,8 @@ public class CountriesFragment extends ListFragment {
   
   @Override
   public void onSaveInstanceState(Bundle state) {
+    super.onSaveInstanceState(state);
+    
     state.putInt(STATE_CHECKED,
                   getListView().getCheckedItemPosition());
   }
