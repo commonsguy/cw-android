@@ -4,7 +4,7 @@
           
   <application>
     <activity android:label="Now"
-              android:name=".Now">
+              android:name="Now">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
